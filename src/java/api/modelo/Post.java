@@ -12,7 +12,7 @@ import javafx.scene.chart.PieChart.Data;
  *
  * @author vinicius.lelis
  */
-public class Post extends Identificador {
+public class Post {
     private Long id;
     private String titulo;
     private String conteudo;
@@ -20,14 +20,21 @@ public class Post extends Identificador {
     private String autor;
     private List<Comentario> comentarios;
     
-
-    public Post() {}
     public Post(Long id, String titulo, String conteudo, String data_criacao, String autor) {
-        super(id);
+        this.setId(id);
         this.setTitulo(titulo);
         this.setConteudo(conteudo);
         this.setData(data_criacao);
         this.setAutor(autor);
+   
+    }
+    public Post(String titulo, String conteudo, String autor) {
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+        this.autor = autor;
+    }
+
+    public Post() {
    
     }
 
@@ -45,6 +52,10 @@ public class Post extends Identificador {
   
     public void setAutor(String autor) {
        this.autor = autor;
+    }
+    
+    public void setId(Long id) {
+        this.id= id;
     }
     public void addComentario(Comentario comentario) {
         comentarios.add(comentario);
@@ -65,7 +76,9 @@ public class Post extends Identificador {
     public Long getId(){
         return id;
     }
-    
+    public String getIdS(){
+        return Long.toString(id);
+    }    
     public List getComentarios () {
         return comentarios;
     }

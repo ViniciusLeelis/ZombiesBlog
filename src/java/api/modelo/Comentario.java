@@ -11,46 +11,64 @@ import javafx.scene.chart.PieChart.Data;
  *
  * @author vinicius.lelis
  */
-public class Comentario extends Identificador{
+public class Comentario{
     
     private Long id;
     private String autor;
     private String comentario;
-    private Data data;
+    private String data;
+    private Long idPost;
     
     public Comentario() {
     }
     
-    public Comentario(Long id, String autor, String comentario, Data data) {        
-        super(id);
+    public Comentario(Long id, String autor, String comentario, String data, Long idPost) {        
+        this.setId(id);
         this.setAutor(autor);
         this.setComentario(comentario);
         this.setData(data);
+        this.setIdPost(idPost);
         
     }
+    
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public Long getId() {
+        return id;
+    }
 
-    private void setComentario(String comentario) {
+    public void setComentario(String comentario) {
         this.comentario = comentario;
     }
     
-    private String getComentario() {
+    public String getComentario() {
         return comentario;
     }
 
-    private void setData(Data data) {
+    public void setData(String data) {
         this.data = data;
     }
     
-    private Data getData() {
+    public String getData() {
         return data;
     }
 
-    private void setAutor(String autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
     
-    private String getAutor() {
+    public String getAutor() {
         return autor;
+    }
+
+    public long getIdPost() {
+        return idPost; //To change body of generated methods, choose Tools | Templates.
+    }
+    public void setIdPost(long idPost) {
+        this.idPost = idPost;
     }
     
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package core.dao;
 
 import api.dao.UsuarioDAO;
@@ -23,15 +19,32 @@ public class UsuarioBD implements UsuarioDAO{
 
             conexao = DriverManager.getConnection("jdbc:mariadb://localhost:3306/zombiesblog","root", ""); 
             
-            System.out.println("Banco de dados... OK!");
+            System.out.println("Banco de dados FUNCIONANDO (TESTE 1)");
         } catch (Exception e){
-            System.out.print("Banco de dados... FAILED");
+            System.out.print("Banco de dados ERRO (TESTE 1");
         }
     }
     
     @Override
-    public Usuario inserir(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inserir(Usuario usuario) {
+        try{
+            PreparedStatement comandoSQLp = conexao.prepareStatement("INSERT INTO zombiesblog.usuario (apelido, senha, nome, email, nivel_acesso) VALUES (?, ?, ?, ?, ?)");  
+            comandoSQLp.setString(1, usuario.getApelido());     
+            comandoSQLp.setString(2, usuario.getSenha());
+            comandoSQLp.setString(3, usuario.getNome());
+            comandoSQLp.setString(4, usuario.getEmail());
+            comandoSQLp.setString(5, "0");
+            System.out.println("comando" + comandoSQLp);
+            comandoSQLp.execute();
+     
+        }           
+        catch (Exception e)
+        {
+          System.out.print("\nErro de conexão nivel Acessos: " + usuario.getnivelAcesso());
+           
+          System.out.print("\nErro de conexão apelido: " + usuario.getApelido());
+        }
+        
     }
 
     @Override
@@ -76,7 +89,7 @@ public class UsuarioBD implements UsuarioDAO{
             u.setNome(rs.getString(4));
             u.setEmail(rs.getString(5));  
             u.setnivelAcesso(rs.getString(6));           
-         
+            System.out.println("ID" + u.getId());
             comandoSQLp.close();
             rs.close();
             return u;

@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author vinicius.lelis
  */
-public class Usuario extends Identificador{
+public class Usuario{
     private Long id;
     String nome;
     private String senha;
@@ -19,12 +19,16 @@ public class Usuario extends Identificador{
     private String email;
     private String nivelAcesso;
     private List<Comentario> comentarios;
+    //public String getApelido;
+    //public String getSenha;
   
-  public Usuario(){}   
-  public Usuario(Long id, String nome, String senha,
+    public Usuario(){}   
+    
+    public Usuario(Long id, String nome, String senha,
                    String apelido, String email, String nivelAcesso,
                    List<Comentario> comentarios){
-        super(id);
+//        this.setId(id);
+        this.id = id;
         this.setNome(nome);
         this.setSenha(senha);
         this.setApelido(apelido);
@@ -34,8 +38,20 @@ public class Usuario extends Identificador{
             
     }
 
+    public Usuario (String apelido, String senha, String nome, String email, String nivelAcesso) {
+        this.apelido =apelido;
+        this.senha = senha;
+        this.nome = nome;
+        this.email = email;
+        this.nivelAcesso = nivelAcesso;
+    }
+    
     public String getNome() {
         return nome;
+    }
+    
+    public String getApelido() {
+        return apelido;
     }
 
     public void setNome(String nome) {

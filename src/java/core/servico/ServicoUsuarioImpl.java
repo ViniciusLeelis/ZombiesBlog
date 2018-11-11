@@ -13,8 +13,10 @@ import java.util.List;
 public class ServicoUsuarioImpl implements ServicoUsuario {
 
     @Override
-    public Usuario inserir(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inserir(Usuario usuario) {
+        UsuarioBD uDao = new UsuarioBD();
+        uDao.inserir(usuario);
+        
     }
 
     @Override

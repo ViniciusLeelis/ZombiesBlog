@@ -12,16 +12,26 @@ import java.util.List;
 public class ServicoPostImpl implements ServicoPost {
 
     @Override
-    public Post inserir(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void inserir(Post post) {
+        postBD pDao = new postBD();
+        pDao.inserir(post);
+        
+    }  
 
     @Override
-    public Post procurarTitulo(String titulo) {
+    public Post procurarID(Long id) {
         postBD pDao = new postBD();
-        Post p = pDao.procurarPost(titulo);
+        Post p = pDao.procurarPost(id);
 
         return p;
     }    
+
+    @Override
+    public List listarTudo() {
+        postBD pDao = new postBD();
+        List<Post> listaPost = pDao.listarTudo();
+    
+        return listaPost;
+    }
 
 }

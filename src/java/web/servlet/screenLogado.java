@@ -5,8 +5,13 @@
  */
 package web.servlet;
 
+import api.modelo.Post;
+import api.servico.ServicoPost;
+import core.servico.ServicoComentarioImpl;
+import core.servico.ServicoPostImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +26,13 @@ public class screenLogado extends HttpServlet {
 
         @Override
         public void doGet(HttpServletRequest req, HttpServletResponse resp){
-
+                    
             ServletContext sc = req.getServletContext();
+            ServicoPost sPost = new ServicoPostImpl();   
+            List<Post> uBD = sPost.listarTudo();   
             try{
-            sc.getRequestDispatcher("/dynamic/jsp/logado.jsp").forward(req, resp);            
+                req.setAttribute("listPosts",uBD);    
+                sc.getRequestDispatcher("/dynamic/jsp/logado.jsp").forward(req, resp);            
             } catch (Exception e){}
         }
 }

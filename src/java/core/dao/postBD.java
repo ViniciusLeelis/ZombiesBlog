@@ -7,10 +7,15 @@ package core.dao;
 
 import api.dao.PostDAO;
 import api.modelo.Post;
+import api.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class postBD implements PostDAO{
@@ -30,11 +35,11 @@ public class postBD implements PostDAO{
     }
 
     @Override
-    public Post procurarPost(String tituloPost){ /* Procura um usuário no BD por nome de usuário*/
+    public Post procurarPost(Long idPost){ /* Procura um usuário no BD por nome de usuário*/
         Post p = null;
         try{        
-            PreparedStatement comandoSQLp = conexao.prepareStatement("select * from zombiesblog.post where titulo = ?");  
-            comandoSQLp.setString(1, tituloPost);
+            PreparedStatement comandoSQLp = conexao.prepareStatement("select * from zombiesblog.post where id = ?");  
+            comandoSQLp.setString(1, Long.toString(idPost));
             ResultSet rs = comandoSQLp.executeQuery();
             rs.next();
             p = new Post();
@@ -43,16 +48,18 @@ public class postBD implements PostDAO{
             p.setConteudo(rs.getString(3));    
             p.setData(rs.getString(4));
             p.setAutor(rs.getString(5));
-         
+            System.out.print("id=" + idPost);
             comandoSQLp.close();
             rs.close();
             return p;
+           
         }           
         catch (Exception e)
         {
-          System.out.print("\nErro na conexão, Titulo do post: " + tituloPost);
+          System.out.print("\nErro na conexão, Titulo do post: " + idPost);
         }
         return p;
+         
     }
     
     @Override
@@ -61,8 +68,25 @@ public class postBD implements PostDAO{
     }
 
     @Override
-    public Post inserir(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inserir(Post post) {
+        try{
+            PreparedStatement comandoSQLp = conexao.prepareStatement("INSERT INTO zombiesblog.post (titulo, conteudo, data, autor) VALUES (?, ?, ?, ?)");  
+            
+            comandoSQLp.setString(1, post.getTitulo());     
+            comandoSQLp.setString(2, post.getConteudo());
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+            Date date = new Date(); 
+            String data = date.toString();
+            comandoSQLp.setString(3, data);
+            comandoSQLp.setString(4, post.getAutor());
+            comandoSQLp.execute();
+            System.out.println("Testando inserção de post: " + post.getData());
+     
+        }           
+        catch (Exception e)
+        {
+        }
+        
     }
 
     @Override
@@ -77,7 +101,35 @@ public class postBD implements PostDAO{
 
     @Override
     public List<Post> listarTudo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Post b = null;
+        List listaPosts = new ArrayList();
+        try{        
+            PreparedStatement comandoSQLp = conexao.prepareStatement("select * from zombiesblog.post");  
+      
+            ResultSet rs = comandoSQLp.executeQuery();
+            while(rs.next()) {
+                b = new Post();
+                b.setId(rs.getLong(1));
+                b.setTitulo(rs.getString(2));
+                b.setConteudo(rs.getString(3));    
+                b.setData(rs.getString(4));
+                b.setAutor(rs.getString(5));
+                listaPosts.add(b);
+            }
+            System.out.print("Autor:" + b.getAutor());
+            System.out.println("Conteudo" + b.getConteudo());       
+            System.out.println("Id: " + b.getId());
+            comandoSQLp.close();
+            rs.close();
+
+        }           
+        catch (Exception e)
+        {
+          System.out.print("\nErro na conexão, Titulo do post: " );
+        }
+
+        return listaPosts;
     }
+
     
 }

@@ -5,8 +5,13 @@
  */
 package web.servlet;
 
+import api.modelo.Post;
+import api.servico.ServicoPost;
+import core.servico.ServicoComentarioImpl;
+import core.servico.ServicoPostImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,12 +24,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class screenIndex extends HttpServlet {
 
-            @Override
+        @Override
         public void doGet(HttpServletRequest req, HttpServletResponse resp){
-
-            ServletContext sc = req.getServletContext();
+            ServletContext sc = req.getServletContext();                
+            ServicoPost sPost = new ServicoPostImpl();   
+            List<Post> uBD = sPost.listarTudo();               
+            
             try{
-            sc.getRequestDispatcher("/dynamic/jsp/index.jsp").forward(req, resp);            
+   
+            req.setAttribute("listPosts",uBD);
+            sc.getRequestDispatcher("/dynamic/jsp/index.jsp").forward(req, resp);
             } catch (Exception e){}
         }
 }

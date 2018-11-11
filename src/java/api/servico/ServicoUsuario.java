@@ -9,7 +9,7 @@ import api.modelo.Usuario;
 
 
 public interface ServicoUsuario {
-    public Usuario inserir(Usuario usuario);
+    public void inserir(Usuario usuario);
     public Usuario procurarEmail(String emailUsuario);
     
 }
