@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,12 +55,14 @@ public class Registrar extends HttpServlet {
                 out.println("<!DOCTYPE html>");           
                 out.println("<html>");
                 out.println("<body>");
-                out.println("Registrado com sucesso! Seja bem-vindo " + nome + " Ao Zombies Blog");
+                out.println("<script>");
+                out.println("alert (\"Olá ! " + nome + ", seu cadastro foi realizado com sucesso !!\");");
+                out.println("</script>");
                 out.println("</body>");
                 out.println("</html>");           
-
             }
         catch(Exception e){}   
 
-         }///////
+         }
+///////
     }

@@ -34,7 +34,7 @@ public class UsuarioBD implements UsuarioDAO{
             comandoSQLp.setString(3, usuario.getNome());
             comandoSQLp.setString(4, usuario.getEmail());
             comandoSQLp.setString(5, "0");
-            System.out.println("comando" + comandoSQLp);
+
             comandoSQLp.execute();
      
         }           

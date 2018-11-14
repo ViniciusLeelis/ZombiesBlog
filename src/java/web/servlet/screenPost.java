@@ -44,5 +44,5 @@ public class screenPost extends HttpServlet {
                 req.setAttribute("listComentarios",cBD);  
                 sc.getRequestDispatcher("/dynamic/jsp/post.jsp").forward(req, resp);            
             } catch (Exception e){}
-        }
+        }                   
 }

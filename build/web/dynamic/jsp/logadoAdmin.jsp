@@ -38,7 +38,7 @@
                         <td><%= p.getData()%></td>
                         <td>
                             <button onclick="" class="deleteButton">Excluir </button>
-                            <button onclick="" class="submitButton">Ver tópico </button>
+                            <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver tópico </button></a>s
                         </td>
                     </tr>
                             <% } %>  

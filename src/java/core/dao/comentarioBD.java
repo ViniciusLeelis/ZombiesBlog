@@ -58,6 +58,7 @@ public class comentarioBD implements ComentarioDAO{
             System.out.print("bataaataa:" + c.getAutor());
             System.out.println("batatata" + c.getComentario());       
             System.out.println("batatat: " + c.getId());
+            
             comandoSQLp.close();
             rs.close();
 
@@ -73,8 +74,21 @@ public class comentarioBD implements ComentarioDAO{
 
 
     @Override
-    public Comentario inserir(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inserir(Comentario comentario) {
+        try{
+            PreparedStatement comandoSQLp = conexao.prepareStatement("INSERT INTO zombiesblog.comentarios (autor, comentario, data, idPost) VALUES (?, ?, ?, ?)");  
+            comandoSQLp.setString(1, comentario.getAutor());     
+            comandoSQLp.setString(2, comentario.getComentario());
+            comandoSQLp.setString(3, comentario.getData());
+            comandoSQLp.setString(4, Long.toString(comentario.getIdPost()));
+            System.out.println("comando" + comandoSQLp);
+            comandoSQLp.execute();
+     
+        }           
+        catch (Exception e)
+        {
+        }
+        
     }
 
     @Override

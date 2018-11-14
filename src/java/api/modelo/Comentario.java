@@ -17,10 +17,9 @@ public class Comentario{
     private String autor;
     private String comentario;
     private String data;
-    private Long idPost;
+        private Long idPost;
     
-    public Comentario() {
-    }
+   
     
     public Comentario(Long id, String autor, String comentario, String data, Long idPost) {        
         this.setId(id);
@@ -31,6 +30,14 @@ public class Comentario{
         
     }
     
+    public Comentario(String autor, String comentario, String data, Long idPost) {
+        this.autor = autor;
+        this.comentario = comentario;
+        this.data = data;
+        this.idPost = idPost;
+    }
+    
+    public Comentario() { }    
     
     public void setId(Long id) {
         this.id = id;

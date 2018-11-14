@@ -30,6 +30,7 @@ public class screenLogado extends HttpServlet {
             ServletContext sc = req.getServletContext();
             ServicoPost sPost = new ServicoPostImpl();   
             List<Post> uBD = sPost.listarTudo();   
+
             try{
                 req.setAttribute("listPosts",uBD);    
                 sc.getRequestDispatcher("/dynamic/jsp/logado.jsp").forward(req, resp);            

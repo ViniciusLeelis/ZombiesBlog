@@ -5,7 +5,6 @@ import api.modelo.Post;
 import api.modelo.Usuario;
 import api.servico.ServicoPost;
 import api.servico.ServicoUsuario;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import core.servico.ServicoComentarioImpl;
 import core.servico.ServicoPostImpl;
 import core.servico.ServicoUsuarioImpl;
@@ -44,7 +43,7 @@ public class Autenticador extends HttpServlet {
         /* --------------------------------------------------- */
         
         /* Chama os Servlets */ 
-        ServletContext sc = req.getServletContext();
+        ServletContext sc = req.getServletContext();        
         if (uBD!= null && uBD.getSenha().equals(senha)){ /* If para determinar se existe o usuário e a senha no BD */
             if(uBD.getnivelAcesso().equals("1")) {  /* If para determinar se o usuário é administrador */
                 try{
@@ -75,7 +74,8 @@ public class Autenticador extends HttpServlet {
             }
         else{
             try {
-                /* Caso o usuário seja invalido, ele apenas seta um atributo de falha e abre a página inicial */    
+                  req.getSession().setAttribute("msg", "Login ou senha incorretos!");
+                  resp.sendRedirect("/dynamic/jsp/index.jsp");
             }catch(Exception e){
                 req.setAttribute("falhaAutenticacao", true);
                 sc.getRequestDispatcher("/dynamic/jsp/index.jsp").forward(req, resp);

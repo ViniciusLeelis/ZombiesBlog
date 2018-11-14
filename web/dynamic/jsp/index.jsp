@@ -20,6 +20,7 @@
                     
                 <% for(Post p: posts) { %>
                 
+                
                     <div class="blog-post">
                         <a href="Post?idPost=<%= p.getId() %>">
                         <h2 class='blog-post-title'><%= p.getTitulo()  %></h2>
@@ -59,8 +60,20 @@
          </div>
 
         <footer class="blog-footer">
-
         </footer>
+    <script>
+      function typeWriter(elemento) {
+        const textoArray = elemento.innerHTML.split('');
+        elemento.innerHTML = '';
+        
+        textoArray.forEach((letra, i) => {
+          setTimeout(() => elemento.innerHTML += letra, 75 * i);
+        });
+      }
 
+
+      const titulo = document.querySelector('h1');
+      typeWriter(titulo);
+    </script>
     </body>
 </html>

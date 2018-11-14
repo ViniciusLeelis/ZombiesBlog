@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebFilter(filterName = "paginasProtegidas",
-        urlPatterns = {"/screenRegister/*",
+        urlPatterns = {
             "/screenLogin/*",
             "/screenLogado",
             "/screenPost/*",})

@@ -11,7 +11,7 @@
         <div class="container">	
             <div>
                     <div style="padding-top: 2%" class="col-md-12">
-                    <form method="POST" action="registrarPost.action">
+                    <form method="POST" action="novoPost.action">
                         <div class="form-group">
                             <label>Título:</label>
                             <input name="titulo" type="text" class="form-control" id="insertTitulo" placeholder="Digite o título da postagem:">

@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface ServicoComentario {
-    public Comentario inserir(Comentario comentario);
+    public void inserir(Comentario comentario);
     public Comentario procurarID(Long id);
     public boolean apagar(Comentario  comentario);
     public boolean apagar(Long id);  

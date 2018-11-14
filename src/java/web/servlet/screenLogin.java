@@ -5,7 +5,7 @@
  */
 package web.servlet;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;

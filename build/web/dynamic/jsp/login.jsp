@@ -12,11 +12,11 @@
                         <form method="POST" align="center" action="Autenticador.action">
                             <div class="form-group">
                             <label>Seu endereço de e-mail</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="email" placeholder="Enter email">
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="email" placeholder="Enter email" required>
                             </div>
                             <div class="form-group">
                                 <label>Senha:</label>
-                                <input name="senha" type="password" class="form-control" name="senha" id="password" placeholder="Digite sua senha">
+                                <input name="senha" type="password" class="form-control" name="senha" id="password" placeholder="Digite sua senha" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="submitButton">Logar</button>
@@ -31,7 +31,20 @@
                     </div>	
             </div>
         </div>     
-
+        <script>
+            $("#form").submit(function() {
+                if($("senha").val()== null || $("#senha").val() ==""){
+                    alert('Digite uma senha válida');      
+                    return false;
+                }
+            });  
+            $("#form").submit(function() {
+                if($("#name").val()== null || $("#name").val() ==""){
+                    alert('Digite um e-mail válido');      
+                    return false;
+                }
+            });            
+        </script>
       <footer>	<!-- Footer do blog !-->
       </footer>
 

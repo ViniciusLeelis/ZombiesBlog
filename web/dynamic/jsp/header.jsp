@@ -28,7 +28,7 @@
 
                        </p>
                   <div class="header-right">
-                      <a class="active" href="/zombiesfinal">Pagina inicial</a>
+                      <a class="active" href="/zombiesfinal/">Pagina inicial</a>
                       <a href="Login">Login</a>
                       <a href="addPost">Adicionar Posts</a>
                       <a href="" > </a>

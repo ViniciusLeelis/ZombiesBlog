@@ -12,11 +12,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class postBD implements PostDAO{
 
@@ -48,7 +51,7 @@ public class postBD implements PostDAO{
             p.setConteudo(rs.getString(3));    
             p.setData(rs.getString(4));
             p.setAutor(rs.getString(5));
-            System.out.print("id=" + idPost);
+
             comandoSQLp.close();
             rs.close();
             return p;
@@ -63,7 +66,7 @@ public class postBD implements PostDAO{
     }
     
     @Override
-    public boolean apagar(Long id) {
+    public void apagar(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -95,8 +98,14 @@ public class postBD implements PostDAO{
     }
 
     @Override
-    public boolean apagar(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void apagar(Post post) {
+        try {  
+            PreparedStatement comandoSQLp = conexao.prepareStatement("DELETE FROM zombiesblog.post WHERE id = ?");
+            String id = post.getId().toString();
+            comandoSQLp.setString(1, id);             
+        } catch (SQLException ex) {
+            Logger.getLogger(postBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
