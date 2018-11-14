@@ -19,6 +19,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.catalina.Session;
 
 /**
  *
@@ -32,11 +34,11 @@ public class novoPost extends HttpServlet {
         ServletContext sc = req.getServletContext();
             ServicoPost sPost = new ServicoPostImpl();   
             List<Post> uBD = sPost.listarTudo();   
-
+            Usuario usuario = (Usuario)req.getSession();
             /* Pega do metodo POST os parametros "email" e "senha" */
             String titulo = req.getParameter("titulo");
             String conteudo = req.getParameter("conteudo");
-            String autor = "Lelis";
+            String autor = usuario.getNome();
             String nivelAcesso = "0";
             Post post = new Post(titulo, conteudo, autor);
 

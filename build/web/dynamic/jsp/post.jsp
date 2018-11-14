@@ -3,8 +3,11 @@
 <%@page import="api.modelo.Post"%>
 <!DOCTYPE html>
      <% Post post = (Post)request.getAttribute("idPost"); %>
+     <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>
      <% List<Comentario> comentarios = (List<Comentario>)request.getAttribute("listComentarios"); %>
+    
      
+
         <%@include file= "header.jsp" %>  
         <div class="container">
             <div class="row">
@@ -19,6 +22,13 @@
                     <hr>
                     <p> <%= post.getConteudo() %> </p>
                     <hr>
+
+                    
+                    <% if(session.getAttribute("usuario")==null) 
+                    {
+                    %>
+                    <h5 class="card-header">Faça login para deixar um comentário:</h5>
+                   <% } else { %> 
                     <div class="card my-4">
                         <h5 class="card-header">Deixe um comentário:</h5>
                         <div class="card-body">
@@ -26,6 +36,8 @@
                             <div class="form-group">
                                 <textarea name="comentario" class="form-control" rows="3"></textarea>
                                 <input type="hidden" name="idPost" value="<%= post.getId() %>">
+                                <input type="hidden" name="autor" value="<%= usuario.getNome() %>">
+                            
                             </div>
                                 
                             <div class="form-group">
@@ -35,7 +47,11 @@
  
                         </div>
                     </div>
-             
+                                
+                  
+                        <% } 
+                        %>
+                    
                                         
                     <% for(Comentario c: comentarios) { 
                     %>

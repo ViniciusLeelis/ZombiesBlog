@@ -14,6 +14,7 @@ import static java.sql.DriverManager.println;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,10 +37,9 @@ public class Autenticador extends HttpServlet {
         
         /* Cria um novo ServicoUsuarioImpl para utilizar de seus recursos*/
         ServicoUsuario sUsuario = new ServicoUsuarioImpl();   
-        Usuario uBD = sUsuario.procurarEmail(emailUsuario);      
-        
+        Usuario uBD = sUsuario.procurarEmail(emailUsuario);              
         ServicoPost sPost = new ServicoPostImpl();   
-        List<Post> pBD = sPost.listarTudo();   
+        List<Post> pBD = sPost.listarTudo();    
         /* --------------------------------------------------- */
         
         /* Chama os Servlets */ 
@@ -49,10 +49,8 @@ public class Autenticador extends HttpServlet {
                 try{
                     req.setAttribute("adminLogado",uBD);
                     req.setAttribute("listPosts",pBD);
-		    HttpSession session = req.getSession(true); // reuse existing
-		    session.setAttribute("usuarioAutenticado", uBD);
-		    session.setMaxInactiveInterval(30); // 30 seconds
-                        
+                    HttpSession session = req.getSession();
+                    session.setAttribute("usuario",uBD);
                     /* Caso for, seta um atributo para adminLogado e abre o jsp logadoAdmin.jsp */
                     sc.getRequestDispatcher("/dynamic/jsp/logadoAdmin.jsp").forward(req, resp);
                 }   catch( Exception e){
@@ -61,7 +59,8 @@ public class Autenticador extends HttpServlet {
             } else                     /* Caso não for administrador, ele será usuário */
                  try{
                     req.setAttribute("usuarioLogado",uBD);
-                     System.out.println("batata");
+                    HttpSession session = req.getSession();
+                    session.setAttribute("usuario",uBD);
                     /* Sendo usuário, é setado um atributo de usuarioLogado e abre o jsp logado.jsp */
                     sc.getRequestDispatcher("/dynamic/jsp/logado.jsp").forward(req, resp);
                                 
@@ -72,15 +71,10 @@ public class Autenticador extends HttpServlet {
                 }               
         
             }
-        else{
-            try {
-                  req.getSession().setAttribute("msg", "Login ou senha incorretos!");
-                  resp.sendRedirect("/dynamic/jsp/index.jsp");
-            }catch(Exception e){
-                req.setAttribute("falhaAutenticacao", true);
-                sc.getRequestDispatcher("/dynamic/jsp/index.jsp").forward(req, resp);
-       
-            }  
+        else{        
+            req.getSession().setAttribute("msg", "Login ou senha incorretos!");
+            resp.sendRedirect("/dynamic/jsp/index.jsp");
+            }
+              
         }
     }
-}

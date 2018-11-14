@@ -40,6 +40,14 @@
         <servlet-name>registrarPost</servlet-name>
         <servlet-class>web.servlet.registrarPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>excluirPost</servlet-name>
+        <servlet-class>web.servlet.excluirPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>novoPost</servlet-name>
+        <servlet-class>web.servlet.novoPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Autenticador</servlet-name>
         <url-pattern>/Autenticador.action</url-pattern>
@@ -65,7 +73,7 @@
         <url-pattern>/Logado</url-pattern>
         <servlet-mapping>
             <servlet-name>novoPost</servlet-name>
-            <url-pattern>/novoPost</url-pattern>
+            <url-pattern>/novoPost.action</url-pattern>
         </servlet-mapping>
     </servlet-mapping>
     <servlet-mapping>
@@ -80,9 +88,14 @@
         <servlet-name>addPost</servlet-name>
         <url-pattern>/addPost</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
-        <servlet-name>registrarPost</servlet-name>
-        <url-pattern>/registrarPost.actiont</url-pattern>
+        <servlet-name>excluirPost</servlet-name>
+        <url-pattern>/excluirPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>novoPost</servlet-name>
+        <url-pattern>/novoPost.action</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>3000</session-timeout>

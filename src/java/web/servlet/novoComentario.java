@@ -11,12 +11,14 @@ import api.modelo.Usuario;
 import api.servico.ServicoComentario;
 import api.servico.ServicoPost;
 import api.servico.ServicoUsuario;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import core.servico.ServicoComentarioImpl;
 import core.servico.ServicoPostImpl;
 import core.servico.ServicoUsuarioImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -35,13 +37,11 @@ public class novoComentario extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         ServletContext sc = req.getServletContext();
             ServicoComentario sComentario = new ServicoComentarioImpl();    
-            Date date = new Date();
-            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-            /* Pega do metodo POST os parametros "email" e "senha" */
+            String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());            /* Pega do metodo POST os parametros "email" e "senha" */
             String coment = req.getParameter("comentario");
             String idPost = req.getParameter("idPost");
-            String autor = "Vinicius Lelis";
-            String data = formatador.toString();
+            String autor = req.getParameter("autor");
+            String data = timeStamp;
             Comentario comentario = new Comentario(autor, coment, data, Long.parseLong(idPost));
 
             /* --------------------------------------------------- */
