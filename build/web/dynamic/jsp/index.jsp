@@ -3,11 +3,13 @@
  
      <%@page import="api.modelo.Post"%> 
      <%@page import="api.modelo.Usuario"%>
+     <!-- É puxado a lista de posts pelo request !-->
      <% List<Post> posts = (List<Post>)request.getAttribute("listPosts"); %>
  
 
-      <!-- Final do header do blog    !-->
+      <!-- Pequena introdução    !-->
         <div class="container">
+            
             <h1 class="blog-title">Zombies Produtora Blog</h1>
             <p class="lead blog-description">Seja bem-vindo  ao blog oficial da Zombies Produtora </p>
         </div>        
@@ -15,7 +17,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 blog-main">
-                    <!-- /. Início do loop -->
+      <!-- FInal da pequena introdução !-->
+      
+      
+      <!-------------------------------------  Início do loop ---------------------------------------------->
           
                     
                 <% for(Post p: posts) { %>
@@ -31,11 +36,8 @@
                         
                     </div><!-- /. Post -->
                  <% } %>
-                    <!-- /. Fim do loop -->
-                <nav class="blog-pagination">
-                  <a class="btn btn-outline-primary" href="#">Antigo</a>
-                  <a class="btn btn-outline-secondary disabled" href="#">Novo</a>
-                </nav>
+      <!---------------------------------- Fim do loop ---------------------------------------------------->
+
 
                 </div><!-- /. Lista de paginação -->
 
@@ -61,6 +63,8 @@
 
         <footer class="blog-footer">
         </footer>
+      
+<!-- Script para manipular o DOM e escrever os títulos em h1 com efeito de máquina de escrever !-->
     <script>
       function typeWriter(elemento) {
         const textoArray = elemento.innerHTML.split('');
@@ -75,5 +79,6 @@
       const titulo = document.querySelector('h1');
       typeWriter(titulo);
     </script>
+<!-- Fim do script !-->
     </body>
 </html>

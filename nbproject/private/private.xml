@@ -4,29 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/core/dao/postBD.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/core/servico/ServicoPostImpl.java</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/addPost.java</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/api/modelo/Post.java</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/novoComentario.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/teste.jsp</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/screenPost.java</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/header.jsp</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/logado.jsp</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/core/dao/UsuarioBD.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/api/servico/ServicoComentario.java</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/core/dao/comentarioBD.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/register.jsp</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/login.jsp</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/addPost.jsp</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/Autenticador.java</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/novoPost.java</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/index.jsp</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/excluirPost.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/addPost.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/sessionFilter.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/header.jsp</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/core/servico/ServicoComentarioImpl.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/screenIndex.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/api/dao/ComentarioDAO.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/Autenticador.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/api/modelo/Usuario.java</file>
-            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/api/modelo/Comentario.java</file>
+            <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/login.jsp</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/web/dynamic/jsp/post.jsp</file>
             <file>file:/C:/Users/Vinicius%20Lelis/Documents/NetBeansProjects/ZombiesFinal/src/java/web/servlet/Registrar.java</file>
         </group>

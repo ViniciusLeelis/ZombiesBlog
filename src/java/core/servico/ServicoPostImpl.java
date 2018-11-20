@@ -12,6 +12,13 @@ import java.util.List;
 public class ServicoPostImpl implements ServicoPost {
 
     @Override
+    public void excluir(Long id) {
+        postBD pDao = new postBD();
+        pDao.apagar(id);
+        
+    }      
+    
+    @Override
     public void inserir(Post post) {
         postBD pDao = new postBD();
         pDao.inserir(post);

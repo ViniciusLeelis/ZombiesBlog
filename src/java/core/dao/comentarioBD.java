@@ -13,8 +13,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class comentarioBD implements ComentarioDAO{
 
@@ -34,8 +37,14 @@ public class comentarioBD implements ComentarioDAO{
 
     
     @Override
-    public boolean apagar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void apagar(Long id) {
+       try{        
+            PreparedStatement comandoSQLp = conexao.prepareStatement("DELETE FROM zombiesblog.comentarios WHERE id = ?");
+            comandoSQLp.setString(1, id.toString());
+            comandoSQLp.execute();            
+    }   catch (SQLException ex) {
+            Logger.getLogger(comentarioBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

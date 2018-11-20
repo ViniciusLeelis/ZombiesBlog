@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
         <%@include file= "header.jsp" %>  
-
+             <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>
        <div class="container">
             <h1 class="blog-title">Zombies Produtora Blog</h1>
             <h3 class="lead blog-description">Inserir post:</h3>
         </div>        
         
-         
+        <!-- Form que mandará o POST para o novoPost.action!-->
         <div class="container">	
             <div>
                     <div style="padding-top: 2%" class="col-md-12">
@@ -20,6 +20,7 @@
                         
                         <div class="form-group">
                             <label >Conteúdo:</label>
+                            <input name="autor" type="hidden" value="<%= usuario.getNome() %>">
                             <input name="conteudo" type="text" class="form-control" id="insertConteudo"  placeholder="Digite o conteúdo da postagem">
                         </div>
 
@@ -30,7 +31,8 @@
                 </div>	
             </div>
         </div>     
-
+        <!-- Form que mandará o POST para o novoPost.action!-->
+        
       <footer>	<!-- Footer do blog !-->
       </footer>
 

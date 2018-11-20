@@ -67,20 +67,24 @@ public class postBD implements PostDAO{
     
     @Override
     public void apagar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {  
+            PreparedStatement comandoSQLp = conexao.prepareStatement("DELETE FROM zombiesblog.post WHERE id = ?");
+            comandoSQLp.setString(1, Long.toString(id));      
+            comandoSQLp.execute();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(postBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
     @Override
     public void inserir(Post post) {
         try{
             PreparedStatement comandoSQLp = conexao.prepareStatement("INSERT INTO zombiesblog.post (titulo, conteudo, data, autor) VALUES (?, ?, ?, ?)");  
             
             comandoSQLp.setString(1, post.getTitulo());     
-            comandoSQLp.setString(2, post.getConteudo());
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-            Date date = new Date(); 
-            String data = date.toString();
-            comandoSQLp.setString(3, data);
+            comandoSQLp.setString(2, post.getConteudo()); 
+         
+            comandoSQLp.setString(3,  post.getData());
             comandoSQLp.setString(4, post.getAutor());
             comandoSQLp.execute();
             System.out.println("Testando inserção de post: " + post.getData());
@@ -103,6 +107,8 @@ public class postBD implements PostDAO{
             PreparedStatement comandoSQLp = conexao.prepareStatement("DELETE FROM zombiesblog.post WHERE id = ?");
             String id = post.getId().toString();
             comandoSQLp.setString(1, id);             
+            comandoSQLp.execute();
+                        
         } catch (SQLException ex) {
             Logger.getLogger(postBD.class.getName()).log(Level.SEVERE, null, ex);
         }

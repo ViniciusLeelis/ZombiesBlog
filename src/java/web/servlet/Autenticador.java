@@ -43,14 +43,14 @@ public class Autenticador extends HttpServlet {
         /* --------------------------------------------------- */
         
         /* Chama os Servlets */ 
-        ServletContext sc = req.getServletContext();        
+        ServletContext sc = req.getServletContext();
         if (uBD!= null && uBD.getSenha().equals(senha)){ /* If para determinar se existe o usuário e a senha no BD */
             if(uBD.getnivelAcesso().equals("1")) {  /* If para determinar se o usuário é administrador */
                 try{
                     req.setAttribute("adminLogado",uBD);
                     req.setAttribute("listPosts",pBD);
                     HttpSession session = req.getSession();
-                    session.setAttribute("usuario",uBD);
+                    session.setAttribute("usuario",uBD); /* É salvo a sessão do usuário */
                     /* Caso for, seta um atributo para adminLogado e abre o jsp logadoAdmin.jsp */
                     sc.getRequestDispatcher("/dynamic/jsp/logadoAdmin.jsp").forward(req, resp);
                 }   catch( Exception e){
@@ -59,8 +59,8 @@ public class Autenticador extends HttpServlet {
             } else                     /* Caso não for administrador, ele será usuário */
                  try{
                     req.setAttribute("usuarioLogado",uBD);
-                    HttpSession session = req.getSession();
-                    session.setAttribute("usuario",uBD);
+                    HttpSession session = req.getSession(); 
+                    session.setAttribute("usuario",uBD); /* É salvo a sessão do usuário */
                     /* Sendo usuário, é setado um atributo de usuarioLogado e abre o jsp logado.jsp */
                     sc.getRequestDispatcher("/dynamic/jsp/logado.jsp").forward(req, resp);
                                 

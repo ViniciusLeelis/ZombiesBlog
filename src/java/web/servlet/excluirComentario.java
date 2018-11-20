@@ -6,14 +6,14 @@
 package web.servlet;
 
 import api.modelo.Post;
-import api.modelo.Usuario;
+import api.servico.ServicoComentario;
 import api.servico.ServicoPost;
-import api.servico.ServicoUsuario;
+import core.servico.ServicoComentarioImpl;
 import core.servico.ServicoPostImpl;
-import core.servico.ServicoUsuarioImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import static java.time.Clock.system;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -21,42 +21,31 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.apache.catalina.Session;
 
 /**
  *
  * @author Vinicius Lelis
  */
-public class novoPost extends HttpServlet {
+public class excluirComentario extends HttpServlet {
  
   
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         ServletContext sc = req.getServletContext();
-            ServicoPost sPost = new ServicoPostImpl();   
-            List<Post> uBD = sPost.listarTudo();   
-            //Usuario usuario = (Usuario)req.getSession();
-            String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());            /* Pega do metodo POST os parametros "email" e "senha" */
-                        
-            /* Pega do metodo POST os parametros "email" e "senha" */
-            String titulo = req.getParameter("titulo");
-            String conteudo = req.getParameter("conteudo");
-            String autor = req.getParameter("autor");
-            String nivelAcesso = "0";
-            Post post = new Post(titulo, conteudo, timeStamp, autor);
-
+            ServicoComentario sComentario = new ServicoComentarioImpl();   
+            String idAutor = req.getParameter("idComentario");
             /* --------------------------------------------------- */
 
             /* Cria um novo ServicoUsuarioImpl para utilizar de seus recursos*/
-            sPost.inserir(post);
+            sComentario.apagar(Long.parseLong(idAutor));
+            System.out.println("Comentário excluido, id: " + idAutor);
             resp.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
                 out.println("<!DOCTYPE html>");           
                 out.println("<html>");
                 out.println("<body>");
                 out.println("<script>");
-                out.println("alert (\"Post inserido com sucesso:" + post.getTitulo() + "  !!\");");
+                out.println("alert (\"Comentário excluido com sucesso\");");
                 out.println("</script>");
                 out.println("</body>");
                 out.println("</html>");   
@@ -67,5 +56,3 @@ public class novoPost extends HttpServlet {
          }
 ///////
     }
-
-

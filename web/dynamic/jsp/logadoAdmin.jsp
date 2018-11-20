@@ -3,20 +3,26 @@
 <%@page import="api.modelo.Comentario"%>
 <%@page import="api.modelo.Usuario"%>
 
-        <% Usuario u = (Usuario)request.getAttribute("adminLogado"); %>
+        <% Usuario u = (Usuario)session.getAttribute("usuario"); %>
         <% List<Post> posts = (List<Post>)request.getAttribute("listPosts"); %>
 
         <%@include file= "header.jsp" %>  
 
-    
+        <% if(session.getAttribute("usuario")==null)  { %>
+        <div> Faça Login para continuar ! </div>
+                                
+        <% } else if(u.getnivelAcesso().equals("1")) {
+                                 %> 
         <div align="center" class="conteudo">
             <div  style="padding-top: 02px; padding-bottom: 25px;">
                 <h2> Seja bem-vindo ! </h2>
                 <p>Você está logado como: <%= u.getNome() %></p>
+                <div> Deseja adicionar um novo tópico?</div>
+                <a href="addPost"><button onclick="" class="submitButton">Adicionar tópico</button></a> 
             </div>
             <hr>
             
-            
+             <!-- Foi definido um CSS usando media queries para tornar a table responsiva !-->
             <!-- Gerenciar tópicos -->
             <div class="col-md-12">
                 <h3> Gerenciar tópicos: </h3>
@@ -24,7 +30,7 @@
                     <tr>
                         <td class="active">Autor</td>
                         <td class="active">Título</td>
-                        <td class="active">Conteúdo</td>
+                        <td class="col-md-6 active">Conteúdo</td>
                         <td class="active">Data</td>
                         <td class="active">Ação</td>
                     </tr>
@@ -37,8 +43,11 @@
                         <td ><%= p.getConteudo()%></td>
                         <td><%= p.getData()%></td>
                         <td>
-                            <button onclick="" class="deleteButton">Excluir </button>
-                            <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver tópico </button></a>s
+                            <form method="POST" action="excluirPost.action">
+                                <input type="hidden" name="idPostDel" value="<%= p.getId() %>">
+                            <button type="submit" class="deleteButton">Excluir </button>
+                            </form>
+                            <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver tópico </button></a>
                         </td>
                     </tr>
                             <% } %>  
@@ -107,6 +116,9 @@
             </div>
             
             </div>  
-        </div>
+        <% } else { %>
+            <div> Apenas administradores podem ver essa página </div>
+            
+         <% } %>
     </body>
 </html>

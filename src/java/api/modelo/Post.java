@@ -28,10 +28,11 @@ public class Post {
         this.setAutor(autor);
    
     }
-    public Post(String titulo, String conteudo, String autor) {
+    public Post(String titulo, String conteudo, String data, String autor) {
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.autor = autor;
+        this.data_criacao = data;
     }
 
     public Post() {

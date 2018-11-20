@@ -5,8 +5,13 @@
  */
 package web.servlet;
 
+import api.servico.ServicoComentario;
+import api.servico.ServicoPost;
+import core.servico.ServicoComentarioImpl;
+import core.servico.ServicoPostImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,69 +23,33 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class excluirPost extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet excluirPost</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet excluirPost at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+     @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        ServletContext sc = req.getServletContext();
+            ServicoPost sPost = new ServicoPostImpl();   
+            String idPost = req.getParameter("idPostDel");
+            /* --------------------------------------------------- */
+
+            /* Cria um novo ServicoUsuarioImpl para utilizar de seus recursos*/
+          
+            sPost.excluir(Long.parseLong(idPost));
+            
+          
+
+            resp.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = resp.getWriter()) {
+                out.println("<!DOCTYPE html>");           
+                out.println("<html>");
+                out.println("<body>");
+                out.println("<script>");
+                out.println("alert (\"Comentário excluido com sucesso\");");
+                out.println("</script>");
+                out.println("</body>");
+                out.println("</html>");   
+                resp.sendRedirect( "/zombiesfinal/");
+            }
+        catch(Exception e){}   
+
+         }
+///////
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}

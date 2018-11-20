@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="api.modelo.Post"%>
 <!DOCTYPE html>
+
      <% Post post = (Post)request.getAttribute("idPost"); %>
      <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>
      <% List<Comentario> comentarios = (List<Comentario>)request.getAttribute("listComentarios"); %>
@@ -23,48 +24,57 @@
                     <p> <%= post.getConteudo() %> </p>
                     <hr>
 
-                    
-                    <% if(session.getAttribute("usuario")==null) 
+                 <!-- Verifica se o usuário está logado, caso não esteja, é apresentado uma mensagem  !-->
+                    <% if(session.getAttribute("usuario")==null)  
                     {
-                    %>
-                    <h5 class="card-header">Faça login para deixar um comentário:</h5>
-                   <% } else { %> 
+                    %> 
+                    <h5 class="card-header"><b>Faça login para deixar um comentário!!</b></h5>
+                   <% } else { %>   <!-- Se estiver logado é liberado o campo para comentar !-->
                     <div class="card my-4">
                         <h5 class="card-header">Deixe um comentário:</h5>
                         <div class="card-body">
-                            <form method="POST" align="center" action="novoComentario.action">
-                            <div class="form-group">
-                                <textarea name="comentario" class="form-control" rows="3"></textarea>
-                                <input type="hidden" name="idPost" value="<%= post.getId() %>">
-                                <input type="hidden" name="autor" value="<%= usuario.getNome() %>">
-                            
-                            </div>
+                            <form method="POST" align="center" action="novoComentario.action">        <!-- É enviado o comentário via POST !-->
+                                <div class="form-group">
+                                    <textarea name="comentario" id="proibir" class="form-control" rows="3"></textarea>
+                                    <input type="hidden" name="idPost" value="<%= post.getId() %>">
+                                    <input type="hidden" name="autor" value="<%= usuario.getNome() %>">
+
+                                </div>
                                 
-                            <div class="form-group">
-                                <button type="submit" class="submitButton">Comentar</button>
-                            </div>                     
+                                <div class="form-group">
+                                    <button type="submit" class="submitButton">Comentar</button>
+                                </div>                     
                             </form>
  
                         </div>
                     </div>
-                                
-                  
-                        <% } 
-                        %>
-                    
+                        <% } %>                          
+                                    
+
+                   <!-- Loop para exibir o restante dos comentários !-->                    
                                         
-                    <% for(Comentario c: comentarios) { 
-                    %>
+                    <% for(Comentario c: comentarios) { %>
                     <hr>
                     <article class="card">
                         <div class="card-body">
-                            <img class="avatar" src="static/img/user.png" alt="img" width="75" height="75">
+                         
                             <cite>
                                 <a href="#"> <%= c.getAutor() %> </a>
                             </cite>
                             <a>
                                 <span><%= c.getData() %> </span>
                             </a>
+                            <% if(session.getAttribute("usuario")==null)  {
+                                
+                            } else if(usuario.getnivelAcesso().equals("1")) {
+                                 %> 
+                                 <div class="col-sm-3">
+                                 <form method="POST" action="excluirComentario.action">
+                                     <input type="hidden" name="idComentario" value="<%= c.getId() %>">
+                                 <a href="excluirComentario.action"><button type="submit" wight="70" class="submitButton">Excluir</button></a> 
+                                 </form>
+                                 </div>
+                                <%} %>  
                         </div>
                         <section class="comment-content comment">
                             <p><%= c.getComentario() %> </p>
@@ -73,7 +83,7 @@
                       <% } %>
                 </div>
                   
-                <!-- -------------------------------- Fim da postagem -------------------------------- !--> 
+                <!-- -------------------------------- Fim do loop -------------------------------- !--> 
               
                 <div class="col-sm-3 offset-sm-1 blog-sidebar">
                     <div class="sidebar-module sidebar-module-inset">
@@ -104,7 +114,23 @@
       </div>
       <!-- /.container -->
     </footer>
+    
     <script>
+     <!-- Script usando listener para identificar as palavras ofensivas, junto adicionei um sistema de criptografia para criptografar uma String contendo as palavras ofensivas, mas sem sucesso !-->
+        $('#proibir').keyup(function() {
+            var $th = $(this);
+            var e = jsEncode.encode("/porra|caralho/gi","123");
+            var d = jsEncode.encode(e,"123");
+            $th.val($th.val().replace(/porra|caralho|fode|bucet|puta|puto|caralh|viado|bost|boquet|cagad|bunda|foda|fudid|punhet|cuzao|vai tomar no cu|tomar no cu|puta que pariu|putaquepariu|ralho|/gi,function(str){return '';}));
+        }).bind('paste',function(e) {
+            setTimeout(function() {
+                $('#someinput').val($('#someinput').val().replace(/porra|caralho|fode|bucet|puta|puto|caralh|viado|bost|boquet|cagad|bunda|foda|fudid|punhet|cuzao|vai tomar no cu|tomar no cu|puta que pariu|putaquepariu|ralho|/gi,function(str){return '';}));
+                $('#someinput').val($('#someinput').val().replace(/\s+/g,' '));
+            },100);
+        });       
+ 
+ 
+ <!--  Script para fazer o efeito de máquina de ecsrver no h1   !-->
       function typeWriter(elemento) {
         const textoArray = elemento.innerHTML.split('');
         elemento.innerHTML = '';
@@ -117,9 +143,6 @@
       typeWriter(titulo);
     </script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 

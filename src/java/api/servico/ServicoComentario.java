@@ -9,7 +9,7 @@ public interface ServicoComentario {
     public void inserir(Comentario comentario);
     public Comentario procurarID(Long id);
     public boolean apagar(Comentario  comentario);
-    public boolean apagar(Long id);  
+    public void apagar(Long id);  
     public List<Comentario> listarComentario(Long idPost);
     
 }

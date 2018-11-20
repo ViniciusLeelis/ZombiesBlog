@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,21 +48,14 @@ public class novoComentario extends HttpServlet {
             /* --------------------------------------------------- */
 
             /* Cria um novo ServicoUsuarioImpl para utilizar de seus recursos*/
-            sComentario.inserir(comentario);
-            resp.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = resp.getWriter()) {
-                out.println("<!DOCTYPE html>");           
-                out.println("<html>");
-                out.println("<body>");
-                out.println("<script>");
-                out.println("alert (\"Comentario inserido!!!\");");
-                out.println("</script>");
-                out.println("</body>");
-                out.println("</html>");    
-                System.out.println("Comentario inserido ?" + comentario.getAutor() + "  sadoksda  " +  comentario.getComentario());
-
-            }
-        catch(Exception e){}   
+            sComentario.inserir(comentario);   
+            resp.sendRedirect( "Post?idPost=" + idPost);
+            PrintWriter out = resp.getWriter();  
+            resp.setContentType("text/html");  
+            out.println("<script type=\"text/javascript\">");  
+            out.println("alert('Novo comentário inserido com sucesso !!');");  
+            out.println("</script>");
+                
+            }  
 
          }
-}

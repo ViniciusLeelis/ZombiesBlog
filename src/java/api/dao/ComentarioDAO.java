@@ -9,5 +9,5 @@ public interface ComentarioDAO {
     public List<Comentario> listarComentario(Long idPost);   
     public void inserir(Comentario comentario);
     public boolean apagar(Comentario  comentario);
-    public boolean apagar(Long id);   
+    public void apagar(Long id);   
 }

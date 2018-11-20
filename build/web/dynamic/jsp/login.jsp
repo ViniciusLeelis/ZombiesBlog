@@ -1,15 +1,18 @@
         <%@include file= "header.jsp" %>  
         
+       <!-- É pego a sessão salva setado com o atributo "usuario"   !-->
+       <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>      
        <div class="container">
             <h1 class="blog-title">Zombies Produtora Blog</h1>
             <p class="lead blog-description">Faça login !</p>
         </div>        
-        
-         
+
+        <% if(session.getAttribute("usuario")==null)  { %>  
+       <!-- Autenticação do usuário através do metodo POST  !-->
         <div class="container">	
             <div class="pai">
                     <div style="padding-top: 2%" class="col-md-4 offset-md-3 box_login">
-                        <form method="POST" align="center" action="Autenticador.action">
+                        <form method="POST" align="center" action="Autenticador.action"> 
                             <div class="form-group">
                             <label>Seu endereço de e-mail</label>
                             <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="email" placeholder="Enter email" required>
@@ -30,7 +33,22 @@
                         </div> 
                     </div>	
             </div>
-        </div>     
+        </div>
+        <% } else if(usuario.getnivelAcesso().equals("1")) { 
+            response.sendRedirect("LogadoAdmin");
+            %>       
+        <% } else { 
+            response.sendRedirect("Logado");
+
+            }%>
+        
+
+        
+
+       <!-- Fim do div de autenticação !-->               
+  
+       
+       <!-- Script para verificar se foi digitado um e-mail e uma senha validas  !-->
         <script>
             $("#form").submit(function() {
                 if($("senha").val()== null || $("#senha").val() ==""){

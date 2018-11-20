@@ -1,18 +1,25 @@
 <%@page import="api.modelo.Comentario"%>
 <%@page import="api.modelo.Usuario"%>
 
-        <% Usuario u = (Usuario)request.getAttribute("usuarioLogado"); %>
+        <% Usuario u = (Usuario)session.getAttribute("usuario"); %>
         <%@include file= "header.jsp" %>  
 
-    
+
+        <% if(session.getAttribute("usuario")==null)  { %>
+        <div> Faça Login para continuar ! </div>
+                                
+        <% } else if(u.getnivelAcesso().equals("0")) {
+        %>    
         <div align="center" class="conteudo">
             <div  style="padding-top: 02px; padding-bottom: 25px;">
                 <h2> Seja bem-vindo ! </h2>
                 <p>Você está logado como: <%= u.getNome() %></p>
             </div>
             <hr>
-
-                <div class="col-md-12 ">
+                <!-- Foi definido um CSS usando media queries para tornar a table responsiva 
+                    Essa table tem como objetivo mostrar os comentários do usuário logado 
+                !-->  
+            <div class="col-md-12 ">
                 <h3> Gerenciar comentários: </h3>
                 <table class="table table-condensed">
                     <tr>
@@ -34,6 +41,9 @@
                     
                 <!-- Fim do loop  -->
                 </table>
-            </div> 
+           </div> 
+                <% } else { %>
+                <div> Apenas usuários podem ver essa páginas </div>
+                <% } %>
     </body>
 </html>
