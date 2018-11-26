@@ -20,13 +20,15 @@ import javax.servlet.http.HttpSession;
  * @author vinicius.lelis
  */
 public class screenLogin extends HttpServlet {
-        @Override
+        
+    @Override
         public void doGet(HttpServletRequest req, HttpServletResponse resp){
 
             ServletContext sc = req.getServletContext();
             try{
-   
+            req.setAttribute("erroLogin","normal");   
             sc.getRequestDispatcher("/dynamic/jsp/login.jsp").forward(req, resp);            
+            
             } catch (Exception e){}
         }
 }

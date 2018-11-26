@@ -48,7 +48,8 @@ public class Registrar extends HttpServlet {
 
             /* Cria um novo ServicoUsuarioImpl para utilizar de seus recursos*/
             ServicoUsuario sUsuario = new ServicoUsuarioImpl();
-
+            HttpSession session = req.getSession();
+            session.setAttribute("usuario",user); /* É salvo a sessão do usuário */
             sUsuario.inserir(user);
             resp.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
@@ -59,7 +60,8 @@ public class Registrar extends HttpServlet {
                 out.println("alert (\"Olá ! " + nome + ", seu cadastro foi realizado com sucesso !!\");");
                 out.println("</script>");
                 out.println("</body>");
-                out.println("</html>");           
+                out.println("</html>"); 
+                resp.sendRedirect( "/zombiesfinal/");
             }
         catch(Exception e){}   
 

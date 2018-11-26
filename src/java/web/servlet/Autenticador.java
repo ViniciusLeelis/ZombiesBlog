@@ -40,6 +40,8 @@ public class Autenticador extends HttpServlet {
         Usuario uBD = sUsuario.procurarEmail(emailUsuario);              
         ServicoPost sPost = new ServicoPostImpl();   
         List<Post> pBD = sPost.listarTudo();    
+        List<Usuario> ulBD = sUsuario.procurarTudo();           
+      
         /* --------------------------------------------------- */
         
         /* Chama os Servlets */ 
@@ -49,6 +51,8 @@ public class Autenticador extends HttpServlet {
                 try{
                     req.setAttribute("adminLogado",uBD);
                     req.setAttribute("listPosts",pBD);
+                    req.setAttribute("listUsuarios",ulBD);
+                                        
                     HttpSession session = req.getSession();
                     session.setAttribute("usuario",uBD); /* É salvo a sessão do usuário */
                     /* Caso for, seta um atributo para adminLogado e abre o jsp logadoAdmin.jsp */
@@ -71,9 +75,10 @@ public class Autenticador extends HttpServlet {
                 }               
         
             }
-        else{        
-            req.getSession().setAttribute("msg", "Login ou senha incorretos!");
-            resp.sendRedirect("/dynamic/jsp/index.jsp");
+        else{
+                req.setAttribute("erroLogin","erro");
+                sc.getRequestDispatcher("/dynamic/jsp/login.jsp").forward(req, resp);
+                          
             }
               
         }

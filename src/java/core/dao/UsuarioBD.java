@@ -2,11 +2,13 @@
 package core.dao;
 
 import api.dao.UsuarioDAO;
+import api.modelo.Post;
 import api.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioBD implements UsuarioDAO{
@@ -96,9 +98,11 @@ public class UsuarioBD implements UsuarioDAO{
         }           
         catch (Exception e)
         {
+          u = null;
           System.out.print("\nErro na conexão, e-mail: " + emailUsuario);
         }
         return u;
+        
     }
     
     @Override
@@ -108,9 +112,35 @@ public class UsuarioBD implements UsuarioDAO{
 
     @Override
     public List<Usuario> procurarTudo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Usuario b = null;
+        List listaUsuarios = new ArrayList();
+        try{        
+            PreparedStatement comandoSQLp = conexao.prepareStatement("select * from zombiesblog.usuario");  
+      
+            ResultSet rs = comandoSQLp.executeQuery();
+            while(rs.next()) {
+                b = new Usuario();
+                b.setId(rs.getLong(1));
+                b.setNome(rs.getString(2));
+                // setSenha    
+                b.setApelido(rs.getString(4));
+                b.setEmail(rs.getString(5));
+                b.setnivelAcesso(rs.getString(6));
+                listaUsuarios.add(b);
+            }
+            System.out.println("Apelidao:" + b.getApelido());
+                    
+            comandoSQLp.close();
+            rs.close();
 
+        }           
+        catch (Exception e)
+        {
+          System.out.print("\nErro na conexão, Titulo do post: " );
+        }
+
+        return listaUsuarios;
+    }
     @Override
     public Usuario atualizar(Usuario usuarioAnt, Usuario usuarioAt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

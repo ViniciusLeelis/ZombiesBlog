@@ -5,11 +5,14 @@
  */
 package api.servico;
 
+import api.modelo.Post;
 import api.modelo.Usuario;
+import java.util.List;
 
 
 public interface ServicoUsuario {
     public void inserir(Usuario usuario);
     public Usuario procurarEmail(String emailUsuario);
+    public List<Usuario> procurarTudo();
     
 }

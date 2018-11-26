@@ -41,6 +41,13 @@ public class ServicoComentarioImpl implements ServicoComentario {
         return listaComentario;
     }
 
+        @Override
+        public List<Comentario> listarComentarioUsuario(String autor) {
+        comentarioBD cDao = new comentarioBD();
+        List<Comentario> listaComentario = cDao.listarComentarioUsuario(autor);
+    
+        return listaComentario;
+    }
     @Override
     public Comentario procurarID(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

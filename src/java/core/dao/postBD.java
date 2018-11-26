@@ -67,11 +67,13 @@ public class postBD implements PostDAO{
     
     @Override
     public void apagar(Long id) {
-        try {  
+        try {
+            PreparedStatement comandoSQLc = conexao.prepareStatement("DELETE FROM zombiesblog.comentarios WHERE idPost = ?");            
             PreparedStatement comandoSQLp = conexao.prepareStatement("DELETE FROM zombiesblog.post WHERE id = ?");
+            comandoSQLc.setString(1, Long.toString(id));
             comandoSQLp.setString(1, Long.toString(id));      
-            comandoSQLp.execute();
-           
+            comandoSQLc.execute();
+            comandoSQLp.execute();           
         } catch (SQLException ex) {
             Logger.getLogger(postBD.class.getName()).log(Level.SEVERE, null, ex);
         }
