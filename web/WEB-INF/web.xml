@@ -48,6 +48,18 @@
         <servlet-name>novoPost</servlet-name>
         <servlet-class>web.servlet.novoPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>excluirComentario</servlet-name>
+        <servlet-class>web.servlet.excluirComentario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>screenLogadoAdmin</servlet-name>
+        <servlet-class>web.servlet.screenLogadoAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>web.servlet.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Autenticador</servlet-name>
         <url-pattern>/Autenticador.action</url-pattern>
@@ -88,14 +100,25 @@
         <servlet-name>addPost</servlet-name>
         <url-pattern>/addPost</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>excluirPost</servlet-name>
-        <url-pattern>/excluirPost</url-pattern>
+        <url-pattern>/excluirPost.action</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>novoPost</servlet-name>
         <url-pattern>/novoPost.action</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>excluirComentario</servlet-name>
+        <url-pattern>/excluirComentario.action</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>screenLogadoAdmin</servlet-name>
+        <url-pattern>/LogadoAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>3000</session-timeout>

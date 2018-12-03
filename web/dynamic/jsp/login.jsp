@@ -1,12 +1,19 @@
         <%@include file= "header.jsp" %>  
         
        <!-- É pego a sessão salva setado com o atributo "usuario"   !-->
-       <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>      
+       <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>   
+       <% String error = (String)request.getAttribute("erroLogin"); %>
        <div class="container">
             <h1 class="blog-title">Zombies Produtora Blog</h1>
-            <p class="lead blog-description">Faça login !</p>
+                   <% if(error.equals("erro")){
+           %>
+           <p style="color: #d64550; font-size: 16px;" class="lead blog-description">Usuário ou senha inválidos :( </p>
+           <% } else {%>
+           <p class="lead blog-description">Faça login !</p>
+           <% } %>
+            
         </div>        
-
+       
         <% if(session.getAttribute("usuario")==null)  { %>  
        <!-- Autenticação do usuário através do metodo POST  !-->
         <div class="container">	

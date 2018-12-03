@@ -14,14 +14,14 @@
                     <form method="POST" action="novoPost.action">
                         <div class="form-group">
                             <label>Título:</label>
-                            <input name="titulo" type="text" class="form-control" id="insertTitulo" placeholder="Digite o título da postagem:">
+                            <input name="titulo" type="text" class="form-control" id="insertTitulo" placeholder="Digite o título da postagem:" required>
                         </div>
                         
                         
                         <div class="form-group">
                             <label >Conteúdo:</label>
                             <input name="autor" type="hidden" value="<%= usuario.getNome() %>">
-                            <input name="conteudo" type="text" class="form-control" id="insertConteudo"  placeholder="Digite o conteúdo da postagem">
+                            <textarea name="conteudo" id="insertConteudo" class="form-control" placeholder="Digite o conteúdo da postagem" rows="4" required></textarea>
                         </div>
 
                         <div align="center" class="form-group">

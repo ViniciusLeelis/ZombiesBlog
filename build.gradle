@@ -1,0 +1,28 @@
+plugins {
+	id 'application'
+	id 'java'
+ 	id 'war'
+	id 'org.gretty' version '2.2.0'
+	id 'eclipse'
+
+	}
+
+compileJava {
+	options.encoding = "UTF-8"
+}
+
+
+repositories{
+	jcenter()
+
+}
+
+
+
+
+dependencies {
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'		
+}
+
+mainClassName = 'web.servlet.screenIndex'

@@ -5,7 +5,7 @@
 
         <% Usuario u = (Usuario)session.getAttribute("usuario"); %>
         <% List<Post> posts = (List<Post>)request.getAttribute("listPosts"); %>
-
+        <% List<Usuario> usuarios = (List<Usuario>)request.getAttribute("listUsuarios"); %>
         <%@include file= "header.jsp" %>  
 
         <% if(session.getAttribute("usuario")==null)  { %>
@@ -56,61 +56,35 @@
               
             </div>
             
-            
-            <!-- Gerenciar comentários -->
-            <hr>
-            <div class="col-md-12 ">
-                <h3> Gerenciar comentários: </h3>
-                <table class="table table-condensed">
-                    <tr>
-                        <td class="active">Autor</td>
-                        <td class="active">Conteúdo</td>
-                        <td class="active">Post comentado</td>
-                        <td class="active">Data </td>
-                        <td class="active">Ação</td>
-                    </tr>
-                <!-- Loop de tópicos existentes no blog  -->
-                    <tr class="active">
-                        <td >Arlete</td>
-                        <td>Achei super legal e intuitivo, aguardo novas explicações </td>
-                        <td >A arte de usar Servlets </td>
-                        <td> 29/09/2018 </td>
-                        <td>
-                            <button onclick="" class="deleteButton">Excluir </button>
-                            <button onclick="" class="submitButton">Ver comentário </button>
-                        </td>
-                    </tr>
-                    
-                <!-- Fim do loop  -->
-                </table>
-            </div>  
-            
+                  
             <!-- Gerenciar Usuários -->
             <hr>
-            <div align="center" class="col-md-12">
+            <div class="col-md-12">
                 <h3> Gerenciar usuários: </h3>
                 <table class="table table-condensed">
+                 <% for(Usuario x: usuarios) { %>                    
                     <tr>
                         <td class="active">Nome</td>
-                        <td class="active">Data de cadastro</td>
-                        <td class="active">Apelido</td>
                         <td class="active">Função</td>
-                        <td class="active">Ação</td>
+                        <td class="active">Apelido</td>
+                        <td class="active col-md-2">Ação</td>
 
                     </tr>
                 <!-- Loop de tópicos existentes no blog  -->
                     <tr class="active">
-                        <td >Arlete Juca</td>
-                        <td class="active">Data de cadastro</td>
-                        <td>Juquinha</td>
-                        <td >Administrador</td>
+                        <td ><%= x.getNome() %></td>
+                        <td class="active"><% if(x.getnivelAcesso().equals("1")) {%>
+                            Administrador <% } else {%>
+                            Usuário <% } %></td>
+                        <td><%= x.getApelido() %></td>
+
 
                         <td>
                             <button onclick="" class="deleteButton">Excluir </button>
                             <button onclick="" class="submitButton">Alterar usuário </button>
                         </td>
                     </tr>
-                    
+                    <% } %>  
                 <!-- Fim do loop  -->
                 </table>
             </div>

@@ -47,6 +47,7 @@ public final class addPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("\n");
       out.write("        ");
@@ -65,7 +66,6 @@ public final class addPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js\"></script>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Zombies BLOG</title>\n");
-      out.write("        <meta charset=\"UTF-8\">\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
       out.write("\n");
       out.write("\n");
@@ -119,7 +119,8 @@ public final class addPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <form method=\"POST\" action=\"novoPost.action\">\n");
       out.write("                        <div class=\"form-group\">\n");
       out.write("                            <label>Título:</label>\n");
-      out.write("                            <input name=\"titulo\" type=\"text\" class=\"form-control\" id=\"insertTitulo\" placeholder=\"Digite o título da postagem:\" required>\n");
+      out.write("                            <input type=\"hidden\" value=\"&#153;\" name=\"bugIE\"> \n");
+      out.write("                            <input name=\"titulo\" type=\"text\" class=\"form-control\" id=\"insertTitulo\" placeholder=\"Digite o título da postagem:\" required acceptcharset=\"UTF-8\">\n");
       out.write("                        </div>\n");
       out.write("                        \n");
       out.write("                        \n");
@@ -128,7 +129,7 @@ public final class addPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <input name=\"autor\" type=\"hidden\" value=\"");
       out.print( usuario.getNome() );
       out.write("\">\n");
-      out.write("                            <textarea name=\"conteudo\" id=\"insertConteudo\" class=\"form-control\" placeholder=\"Digite o conteúdo da postagem\" rows=\"4\" required></textarea>\n");
+      out.write("                            <textarea name=\"conteudo\" id=\"insertConteudo\" class=\"form-control\" placeholder=\"Digite o conteúdo da postagem\" rows=\"4\" required acceptcharset=\"UTF-8\"></textarea>\n");
       out.write("                        </div>\n");
       out.write("\n");
       out.write("                        <div align=\"center\" class=\"form-group\">\n");
@@ -140,8 +141,15 @@ public final class addPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>     \n");
       out.write("        <!-- Form que mandará o POST para o novoPost.action!-->\n");
       out.write("        \n");
-      out.write("      <footer>\t<!-- Footer do blog !-->\n");
-      out.write("      </footer>\n");
+      out.write("        <script>\n");
+      out.write("           (function() {\n");
+      out.write("               const titulos = ['Um título maneiro', 'Um título incrível', 'Um titulo sensacional'];\n");
+      out.write("               const tituloRandom = titulos[Math.floor(Math.random() * (1 - 0 + 1)) + 1];\n");
+      out.write("               document.getElementById('insertTitulo').placeholder = tituloRandom;\n");
+      out.write("               \n");
+      out.write("               \n");
+      out.write("           })();\n");
+      out.write("        </script>\n");
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");

@@ -64,20 +64,19 @@
                             <a>
                                 <span><%= c.getData() %> </span>
                             </a>
+
+                        </div>
+                        <section class="comment-content comment">
+                            <p><%= c.getComentario() %> </p>
                             <% if(session.getAttribute("usuario")==null)  {
                                 
                             } else if(usuario.getnivelAcesso().equals("1")) {
                                  %> 
-                                 <div class="col-sm-3">
-                                 <form method="POST" action="excluirComentario.action">
-                                     <input type="hidden" name="idComentario" value="<%= c.getId() %>">
-                                 <a href="excluirComentario.action"><button type="submit" wight="70" class="submitButton">Excluir</button></a> 
-                                 </form>
-                                 </div>
+                                    <form method="POST" action="excluirComentario.action">
+                                        <input type="hidden" name="idComentario" value="<%= c.getId() %>">
+                                    <a href="excluirComentario.action"><button type="submit" class="btn btn-danger">Excluir</button></a> 
+                                    </form>         
                                 <%} %>  
-                        </div>
-                        <section class="comment-content comment">
-                            <p><%= c.getComentario() %> </p>
                         </section>
                     </article>
                       <% } %>

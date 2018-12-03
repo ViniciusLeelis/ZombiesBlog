@@ -15,6 +15,7 @@
                                  %> 
         <div align="center" class="conteudo">
             <div  style="padding-top: 02px; padding-bottom: 25px;">
+                <img width="10%" src="static/img/zombi.gif">
                 <h2> Seja bem-vindo ! </h2>
                 <p>Você está logado como: <%= u.getNome() %></p>
                 <div> Deseja adicionar um novo tópico?</div>
@@ -47,6 +48,10 @@
                                 <input type="hidden" name="idPostDel" value="<%= p.getId() %>">
                             <button type="submit" class="deleteButton">Excluir </button>
                             </form>
+                            <form method="POST" action="alterarPost.action">
+                                <input type="hidden" name="idPost" value="<%= p.getId() %>">
+                            <button type="submit" class="submitButton">Alterar</button>
+                            </form>                            
                             <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver tópico </button></a>
                         </td>
                     </tr>
@@ -62,13 +67,14 @@
             <div class="col-md-12">
                 <h3> Gerenciar usuários: </h3>
                 <table class="table table-condensed">
-                 <% for(Usuario x: usuarios) { %>                    
+                 <% for(Usuario x: usuarios) { %>
+                    <% if(x.getnivelAcesso().equals("0")) { %>
                     <tr>
                         <td class="active">Nome</td>
                         <td class="active">Função</td>
                         <td class="active">Apelido</td>
                         <td class="active col-md-2">Ação</td>
-
+                
                     </tr>
                 <!-- Loop de tópicos existentes no blog  -->
                     <tr class="active">
@@ -77,14 +83,17 @@
                             Administrador <% } else {%>
                             Usuário <% } %></td>
                         <td><%= x.getApelido() %></td>
-
-
                         <td>
-                            <button onclick="" class="deleteButton">Excluir </button>
-                            <button onclick="" class="submitButton">Alterar usuário </button>
+                            <form method="POST" action="excluirUsuario.action">
+                                <input type="hidden" name="idUsuario" value="<%= x.getId() %>">   
+                                <input type="hidden" name="autorUsuario" value="<%= x.getApelido() %>">   
+                                <input type="hidden" value="&#153;" name="bugIE">
+                            <button type="submit" class="deleteButton">Excluir </button>
+                            </form>                            
                         </td>
                     </tr>
-                    <% } %>  
+                    <% }
+                            } %>  
                 <!-- Fim do loop  -->
                 </table>
             </div>

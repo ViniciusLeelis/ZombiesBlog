@@ -81,7 +81,6 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js\"></script>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Zombies BLOG</title>\n");
-      out.write("        <meta charset=\"UTF-8\">\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
       out.write("\n");
       out.write("\n");
@@ -132,6 +131,7 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" \n");
       out.write("        <div align=\"center\" class=\"conteudo\">\n");
       out.write("            <div  style=\"padding-top: 02px; padding-bottom: 25px;\">\n");
+      out.write("                <img width=\"10%\" src=\"static/img/zombi.gif\">\n");
       out.write("                <h2> Seja bem-vindo ! </h2>\n");
       out.write("                <p>Você está logado como: ");
       out.print( u.getNome() );
@@ -178,6 +178,12 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\">\n");
       out.write("                            <button type=\"submit\" class=\"deleteButton\">Excluir </button>\n");
       out.write("                            </form>\n");
+      out.write("                            <form method=\"POST\" action=\"alterarPost.action\">\n");
+      out.write("                                <input type=\"hidden\" name=\"idPost\" value=\"");
+      out.print( p.getId() );
+      out.write("\">\n");
+      out.write("                            <button type=\"submit\" class=\"submitButton\">Alterar</button>\n");
+      out.write("                            </form>                            \n");
       out.write("                            <a href=\"Post?idPost=");
       out.print( p.getId() );
       out.write("\"><button onclick=\"\" class=\"submitButton\">Ver tópico </button></a>\n");
@@ -199,13 +205,16 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <table class=\"table table-condensed\">\n");
       out.write("                 ");
  for(Usuario x: usuarios) { 
-      out.write("                    \n");
+      out.write("\n");
+      out.write("                    ");
+ if(x.getnivelAcesso().equals("0")) { 
+      out.write("\n");
       out.write("                    <tr>\n");
       out.write("                        <td class=\"active\">Nome</td>\n");
       out.write("                        <td class=\"active\">Função</td>\n");
       out.write("                        <td class=\"active\">Apelido</td>\n");
       out.write("                        <td class=\"active col-md-2\">Ação</td>\n");
-      out.write("\n");
+      out.write("                \n");
       out.write("                    </tr>\n");
       out.write("                <!-- Loop de tópicos existentes no blog  -->\n");
       out.write("                    <tr class=\"active\">\n");
@@ -224,15 +233,22 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td>");
       out.print( x.getApelido() );
       out.write("</td>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("                        <td>\n");
-      out.write("                            <button onclick=\"\" class=\"deleteButton\">Excluir </button>\n");
-      out.write("                            <button onclick=\"\" class=\"submitButton\">Alterar usuário </button>\n");
+      out.write("                            <form method=\"POST\" action=\"excluirUsuario.action\">\n");
+      out.write("                                <input type=\"hidden\" name=\"idUsuario\" value=\"");
+      out.print( x.getId() );
+      out.write("\">   \n");
+      out.write("                                <input type=\"hidden\" name=\"autorUsuario\" value=\"");
+      out.print( x.getApelido() );
+      out.write("\">   \n");
+      out.write("                                <input type=\"hidden\" value=\"&#153;\" name=\"bugIE\">\n");
+      out.write("                            <button type=\"submit\" class=\"deleteButton\">Excluir </button>\n");
+      out.write("                            </form>                            \n");
       out.write("                        </td>\n");
       out.write("                    </tr>\n");
       out.write("                    ");
- } 
+ }
+                            } 
       out.write("  \n");
       out.write("                <!-- Fim do loop  -->\n");
       out.write("                </table>\n");

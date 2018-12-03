@@ -6,23 +6,27 @@
     </servlet>
     <servlet>
         <servlet-name>screenIndex</servlet-name>
-        <servlet-class>web.servlet.screenIndex</servlet-class>
+        <servlet-class>web.servlet.RedirecionarInicio</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>screenLogin</servlet-name>
-        <servlet-class>web.servlet.screenLogin</servlet-class>
+        <servlet-class>web.servlet.RedirecionarLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>screenRegister</servlet-name>
-        <servlet-class>web.servlet.screenRegister</servlet-class>
+        <servlet-class>web.servlet.RedirecionarRegistro</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>inserirAlteracao</servlet-name>
+        <servlet-class>web.servlet.InserirAlteracao</servlet-class>
+    </servlet>    
+    <servlet>
         <servlet-name>screenPost</servlet-name>
-        <servlet-class>web.servlet.screenPost</servlet-class>
+        <servlet-class>web.servlet.AdicionarPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>screenLogado</servlet-name>
-        <servlet-class>web.servlet.screenLogado</servlet-class>
+        <servlet-class>web.servlet.RedirecionarLogado</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Registrar</servlet-name>
@@ -30,32 +34,54 @@
     </servlet>
     <servlet>
         <servlet-name>novoComentario</servlet-name>
-        <servlet-class>web.servlet.novoComentario</servlet-class>
+        <servlet-class>web.servlet.NovoComentario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addPost</servlet-name>
-        <servlet-class>web.servlet.addPost</servlet-class>
+        <servlet-class>web.servlet.RedirecionarPost</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>alterarPost</servlet-name>
+        <servlet-class>web.servlet.AlterarPost</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>excluirUsuario</servlet-name>
+        <servlet-class>web.servlet.ExcluirUsuario</servlet-class>
+    </servlet>    
+    <servlet>
         <servlet-name>excluirPost</servlet-name>
-        <servlet-class>web.servlet.excluirPost</servlet-class>
+        <servlet-class>web.servlet.ExcluirPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>novoPost</servlet-name>
-        <servlet-class>web.servlet.novoPost</servlet-class>
+        <servlet-class>web.servlet.NovoPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>excluirComentario</servlet-name>
-        <servlet-class>web.servlet.excluirComentario</servlet-class>
+        <servlet-class>web.servlet.ExcluirComentario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>screenLogadoAdmin</servlet-name>
-        <servlet-class>web.servlet.screenLogadoAdmin</servlet-class>
+        <servlet-class>web.servlet.RedirecionarLogadoAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
         <servlet-class>web.servlet.Logout</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>alterarPost</servlet-name>
+        <url-pattern>/alterarPost.action</url-pattern>
+    </servlet-mapping>    
+    <servlet-mapping>
+        <servlet-name>inserirAlteracao</servlet-name>
+        <url-pattern>/inserirAlteracao.action</url-pattern>
+    </servlet-mapping>        
+    <servlet-mapping>
+        <servlet-name>excluirUsuario</servlet-name>
+        <url-pattern>/excluirUsuario.action</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Autenticador</servlet-name>
         <url-pattern>/Autenticador.action</url-pattern>

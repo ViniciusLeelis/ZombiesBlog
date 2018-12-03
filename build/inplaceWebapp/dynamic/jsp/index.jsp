@@ -9,8 +9,7 @@
 
       <!-- Pequena introdução    !-->
         <div class="container">
-            
-            <h1 class="blog-title">Zombies Produtora Blog</h1>
+            <h1 id="animacao" class="blog-title">Zombies Produtora Blog</h1>
             <p class="lead blog-description">Seja bem-vindo  ao blog oficial da Zombies Produtora </p>
         </div>        
   
@@ -28,7 +27,7 @@
                 
                     <div class="blog-post">
                         <a href="Post?idPost=<%= p.getId() %>">
-                        <h2 class='blog-post-title'><%= p.getTitulo()  %></h2>
+                        <h2  class='blog-post-title'><%= p.getTitulo()  %></h2>
                         
                         </a>
                         <p class="blog-post-meta"><%= p.getData() %> <a href="#"><%= p.getAutor() %></a></p>
@@ -57,7 +56,7 @@
                         <h4>Arquivos do blog</h4>
                         <ol class="list-unstyled">
                             <li><a href="#">2018 Arquivo</a></li>
-
+                            <div id="zombie"> </div>
                         </ol>
                     </div>
 
@@ -72,6 +71,27 @@
       
 <!-- Script para manipular o DOM e escrever os títulos em h1 com efeito de máquina de escrever !-->
     <script>
+        var cont = 0;
+        $("#animacao").click(function(){
+            
+            if(cont != 1 ) {
+                $("div").animate({
+                    left: '+=250px',
+                    height: '+=150px',
+                    width: '+=150px'
+
+                });
+            cont = 1;}
+        
+            else{
+                $("div").animate({
+                    left: '0',
+                    height: '-=150px',
+                    width: '-=150px'
+                    });            
+            cont = 0
+            } 
+        });          
       function typeWriter(elemento) {
         const textoArray = elemento.innerHTML.split('');
         elemento.innerHTML = '';

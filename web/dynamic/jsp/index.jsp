@@ -32,7 +32,13 @@
                         
                         </a>
                         <p class="blog-post-meta"><%= p.getData() %> <a href="#"><%= p.getAutor() %></a></p>
-                        <p><%= p.getConteudo()%></p>
+                        <% 
+                            if (p.getConteudo().length() > 100) { %>
+                            <p><%= p.getConteudo().substring(0, 100) + "... [saiba mais]" %> </p>
+                            <% } else { %>
+                            <p><%= p.getConteudo() %></p>
+                            <% } %>
+
                         
                     </div><!-- /. Post -->
                  <% } %>

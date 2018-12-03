@@ -57,7 +57,7 @@
                     <hr>
                     <article class="card">
                         <div class="card-body">
-                         
+                            <img id="userZombie" width="05%" src="static/img/user_zombie.gif">
                             <cite>
                                 <a href="#"> <%= c.getAutor() %> </a>
                             </cite>
@@ -86,19 +86,12 @@
               
                 <div class="col-sm-3 offset-sm-1 blog-sidebar">
                     <div class="sidebar-module sidebar-module-inset">
-                        
                         <h4>Sobre a Zombies</h4>
                         <p>A Zombies Blog foi criado com o intuito de transmitir conhecimento sobre
                         esse mundo mágico da produção audiovisual. Dicas, helps e tutoriais para você !</p>
                     </div>
-                    <div class="sidebar-module">
-                        <h4>Arquivos do blog</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="#">March 2014</a></li>
-                        </ol>
-                    </div>
-
-                    </div><!-- /.blog-sidebar -->
+                    
+                </div><!-- /.blog-sidebar -->
                 
             </div>
       <!-- /.row -->
@@ -140,6 +133,19 @@
 
       const titulo = document.querySelector('h1');
       typeWriter(titulo);
+
+      (function() {
+            const titulos = ['Digite um comentário TOP', 'Digite um comentário show!', 'Grgrgrrg comentario'];
+            const tituloRandom = titulos[Math.floor(Math.random() * (1 - 0 + 1)) + 1];
+            document.getElementById('proibir').placeholder = tituloRandom;
+            document.getElementbyId('seila')
+            const imagens = ['user_zombies.gif', 'user_zombie2.gif'];
+            const imgRandom = imagens[Math.floor(Math.random() * (1 - 0 + 1)) + 0];
+            document.getElementById("userZombie").src = "imgRandom";
+           })();
+           
+
+            
     </script>
 
 
