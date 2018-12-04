@@ -40,7 +40,7 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -51,6 +51,7 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -99,7 +100,7 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                      <a class=\"active\" href=\"/zombiesfinal/\">Pagina inicial</a>\n");
       out.write("                      ");
   if(session.getAttribute("usuario")==null) { 
-      out.write("\n");
+      out.write("   <!-- Verifica se já está logado !-->\n");
       out.write("                      <a href=\"Login\">Login</a>\n");
       out.write("                      ");
  } else { 
@@ -162,12 +163,42 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td >");
       out.print( p.getAutor() );
       out.write("</td>\n");
-      out.write("                        <td>");
+      out.write("                        <td>\n");
+      out.write("                            ");
+ 
+                            if (p.getTitulo().length() > 30) { 
+      out.write("\n");
+      out.write("                            <p>");
+      out.print( p.getTitulo().substring(0, 30) + "... [+]" );
+      out.write(" </p>\n");
+      out.write("                            ");
+ } else { 
+      out.write("\n");
+      out.write("                            <p>");
       out.print( p.getTitulo() );
-      out.write("</td>\n");
-      out.write("                        <td >");
-      out.print( p.getConteudo());
-      out.write("</td>\n");
+      out.write("</p>\n");
+      out.write("                            ");
+ } 
+      out.write("\n");
+      out.write("                        </td>\n");
+      out.write("                        <td>\n");
+      out.write("                            ");
+ 
+                            if (p.getConteudo().length() > 200) { 
+      out.write("\n");
+      out.write("                            <p>");
+      out.print( p.getConteudo().substring(0, 200) + "... [+]" );
+      out.write(" </p>\n");
+      out.write("                            ");
+ } else { 
+      out.write("\n");
+      out.write("                            <p>");
+      out.print( p.getConteudo() );
+      out.write("</p>\n");
+      out.write("                            ");
+ } 
+      out.write("\n");
+      out.write("                        </td>\n");
       out.write("                        <td>");
       out.print( p.getData());
       out.write("</td>\n");
@@ -178,6 +209,8 @@ public final class logadoAdmin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\">\n");
       out.write("                            <button type=\"submit\" class=\"deleteButton\">Excluir </button>\n");
       out.write("                            </form>\n");
+      out.write("                            \n");
+      out.write("                            \n");
       out.write("                            <form method=\"POST\" action=\"alterarPost.action\">\n");
       out.write("                                <input type=\"hidden\" name=\"idPost\" value=\"");
       out.print( p.getId() );

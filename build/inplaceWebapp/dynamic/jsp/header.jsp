@@ -29,7 +29,7 @@
                        </p>
                   <div class="header-right">
                       <a class="active" href="/zombiesfinal/">Pagina inicial</a>
-                      <%  if(session.getAttribute("usuario")==null) { %>
+                      <%  if(session.getAttribute("usuario")==null) { %>   <!-- Verifica se já está logado !-->
                       <a href="Login">Login</a>
                       <% } else { %>
                       <a href="Login">Página de administração</a>

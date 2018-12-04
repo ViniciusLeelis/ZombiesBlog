@@ -1,6 +1,8 @@
 <%@page import="api.modelo.Comentario"%>
 <%@page import="java.util.List"%>
 <%@page import="api.modelo.Post"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
      <% Post post = (Post)request.getAttribute("idPost"); %>
@@ -14,7 +16,7 @@
             <div class="row">
                 
            
-                <!-- -------------------------------- InÌcio da Postagem -------------------------------- !--> 
+                <!-- -------------------------------- In√≠cio da Postagem -------------------------------- !--> 
                 <div class="col-lg-8">
                     <h1> <%= post.getTitulo() %></h1>
                     <h4> por <a href="#"> <%= post.getAutor() %> </a> </h4>
@@ -24,20 +26,20 @@
                     <p> <%= post.getConteudo() %> </p>
                     <hr>
 
-                 <!-- Verifica se o usu·rio est· logado, caso n„o esteja, È apresentado uma mensagem  !-->
+                 <!-- Verifica se o usu√°rio est√° logado, caso n√£o esteja, √© apresentado uma mensagem  !-->
                     <% if(session.getAttribute("usuario")==null)  
                     {
                     %> 
-                    <h5 class="card-header"><b>FaÁa login para deixar um coment·rio!!</b></h5>
-                   <% } else { %>   <!-- Se estiver logado È liberado o campo para comentar !-->
+                    <h5 class="card-header"><b>Fa√ßa login para deixar um coment√°rio!!</b></h5>
+                   <% } else { %>   <!-- Se estiver logado √© liberado o campo para comentar !-->
                     <div class="card my-4">
-                        <h5 class="card-header">Deixe um coment·rio:</h5>
+                        <h5 class="card-header">Deixe um coment√°rio:</h5>
                         <div class="card-body">
-                            <form method="POST" align="center" action="novoComentario.action">        <!-- … enviado o coment·rio via POST !-->
+                            <form method="POST" align="center" action="novoComentario.action">        <!-- √â enviado o coment√°rio via POST !-->
                                 <div class="form-group">
-                                    <textarea name="comentario" id="proibir" class="form-control" rows="3"></textarea>
+                                    <textarea name="comentario" id="proibir" class="form-control" rows="3" required acceptcharset="UTF-8"></textarea>
                                     <input type="hidden" name="idPost" value="<%= post.getId() %>">
-                                    <input type="hidden" name="autor" value="<%= usuario.getNome() %>">
+                                    <input type="hidden" name="autor" required acceptcharset="UTF-8" value="<%= usuario.getNome() %>">
 
                                 </div>
                                 
@@ -51,7 +53,7 @@
                         <% } %>                          
                                     
 
-                   <!-- Loop para exibir o restante dos coment·rios !-->                    
+                   <!-- Loop para exibir o restante dos coment√°rios !-->                    
                                         
                     <% for(Comentario c: comentarios) { %>
                     <hr>
@@ -88,7 +90,7 @@
                     <div class="sidebar-module sidebar-module-inset">
                         <h4>Sobre a Zombies</h4>
                         <p>A Zombies Blog foi criado com o intuito de transmitir conhecimento sobre
-                        esse mundo m·gico da produÁ„o audiovisual. Dicas, helps e tutoriais para vocÍ !</p>
+                        esse mundo m√°gico da produ√ß√£o audiovisual. Dicas, helps e tutoriais para voc√™ !</p>
                     </div>
                     
                 </div><!-- /.blog-sidebar -->
@@ -122,7 +124,7 @@
         });       
  
  
- <!--  Script para fazer o efeito de m·quina de ecsrver no h1   !-->
+ <!--  Script para fazer o efeito de m√°quina de escrever no h1   !-->
       function typeWriter(elemento) {
         const textoArray = elemento.innerHTML.split('');
         elemento.innerHTML = '';
@@ -135,7 +137,7 @@
       typeWriter(titulo);
 
       (function() {
-            const titulos = ['Digite um coment·rio TOP', 'Digite um coment·rio show!', 'Grgrgrrg comentario'];
+            const titulos = ['Digite um coment√°rio TOP', 'Digite um coment√°rio show!', 'Grgrgrrg comentario'];
             const tituloRandom = titulos[Math.floor(Math.random() * (1 - 0 + 1)) + 1];
             document.getElementById('proibir').placeholder = tituloRandom;
             document.getElementbyId('seila')

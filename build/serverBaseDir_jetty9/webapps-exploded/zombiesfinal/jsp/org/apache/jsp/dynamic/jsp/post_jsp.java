@@ -39,7 +39,7 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -50,6 +50,8 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -101,7 +103,7 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                      <a class=\"active\" href=\"/zombiesfinal/\">Pagina inicial</a>\n");
       out.write("                      ");
   if(session.getAttribute("usuario")==null) { 
-      out.write("\n");
+      out.write("   <!-- Verifica se já está logado !-->\n");
       out.write("                      <a href=\"Login\">Login</a>\n");
       out.write("                      ");
  } else { 
@@ -158,11 +160,11 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"card-body\">\n");
       out.write("                            <form method=\"POST\" align=\"center\" action=\"novoComentario.action\">        <!-- É enviado o comentário via POST !-->\n");
       out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <textarea name=\"comentario\" id=\"proibir\" class=\"form-control\" rows=\"3\"></textarea>\n");
+      out.write("                                    <textarea name=\"comentario\" id=\"proibir\" class=\"form-control\" rows=\"3\" required acceptcharset=\"UTF-8\"></textarea>\n");
       out.write("                                    <input type=\"hidden\" name=\"idPost\" value=\"");
       out.print( post.getId() );
       out.write("\">\n");
-      out.write("                                    <input type=\"hidden\" name=\"autor\" value=\"");
+      out.write("                                    <input type=\"hidden\" name=\"autor\" required acceptcharset=\"UTF-8\" value=\"");
       out.print( usuario.getNome() );
       out.write("\">\n");
       out.write("\n");
@@ -267,7 +269,7 @@ public final class post_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        });       \n");
       out.write(" \n");
       out.write(" \n");
-      out.write(" <!--  Script para fazer o efeito de máquina de ecsrver no h1   !-->\n");
+      out.write(" <!--  Script para fazer o efeito de máquina de escrever no h1   !-->\n");
       out.write("      function typeWriter(elemento) {\n");
       out.write("        const textoArray = elemento.innerHTML.split('');\n");
       out.write("        elemento.innerHTML = '';\n");

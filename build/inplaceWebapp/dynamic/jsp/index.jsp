@@ -1,13 +1,15 @@
-     <%@include file= "header.jsp" %>  
+<%@include file= "header.jsp" %>  
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
  
      <%@page import="api.modelo.Post"%> 
      <%@page import="api.modelo.Usuario"%>
-     <!-- É puxado a lista de posts pelo request !-->
+     <!-- Ã‰ puxado a lista de posts pelo request !-->
      <% List<Post> posts = (List<Post>)request.getAttribute("listPosts"); %>
  
 
-      <!-- Pequena introdução    !-->
+      <!-- Pequena introduÃ§Ã£o    !-->
         <div class="container">
             <h1 id="animacao" class="blog-title">Zombies Produtora Blog</h1>
             <p class="lead blog-description">Seja bem-vindo  ao blog oficial da Zombies Produtora </p>
@@ -16,11 +18,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 blog-main">
-      <!-- FInal da pequena introdução !-->
+      <!-- FInal da pequena introduÃ§Ã£o !-->
       
       
-      <!-------------------------------------  Início do loop ---------------------------------------------->
-          
+      <!-------------------------------------  InÃ­cio do loop ---------------------------------------------->
+
+
+
+
                     
                 <% for(Post p: posts) { %>
                 
@@ -44,13 +49,13 @@
       <!---------------------------------- Fim do loop ---------------------------------------------------->
 
 
-                </div><!-- /. Lista de paginação -->
+                </div><!-- /. Lista de paginaÃ§Ã£o -->
 
                 <div class="col-sm-3 offset-sm-1 blog-sidebar">
                     <div class="sidebar-module sidebar-module-inset">
                         <h4>Sobre a Zombies</h4>
                         <p>A Zombies Blog foi criado com o intuito de transmitir conhecimento sobre
-                        esse mundo mágico da produção audiovisual. Dicas, helps e tutoriais para você !</p>
+                        esse mundo mÃ¡gico da produÃ§Ã£o audiovisual. Dicas, helps e tutoriais para vocÃª !</p>
                     </div>
                     <div class="sidebar-module">
                         <h4>Arquivos do blog</h4>
@@ -69,7 +74,7 @@
         <footer class="blog-footer">
         </footer>
       
-<!-- Script para manipular o DOM e escrever os títulos em h1 com efeito de máquina de escrever !-->
+<!-- Script para manipular o DOM e escrever os tÃ­tulos em h1 com efeito de mÃ¡quina de escrever !-->
     <script>
         var cont = 0;
         $("#animacao").click(function(){

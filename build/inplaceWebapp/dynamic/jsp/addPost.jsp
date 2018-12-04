@@ -1,4 +1,6 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
         <%@include file= "header.jsp" %>  
@@ -8,22 +10,22 @@
             <h3 class="lead blog-description">Inserir post:</h3>
         </div>        
         
-        <!-- Form que mandará o POST para o novoPost.action!-->
+        <!-- Form que mandarÃ¡ o POST para o novoPost.action!-->
         <div class="container">	
             <div>
                     <div style="padding-top: 2%" class="col-md-12">
                     <form method="POST" action="novoPost.action">
                         <div class="form-group">
-                            <label>Título:</label>
+                            <label>TÃ­tulo:</label>
                             <input type="hidden" value="&#153;" name="bugIE"> 
-                            <input name="titulo" type="text" class="form-control" id="insertTitulo" placeholder="Digite o título da postagem:" required acceptcharset="UTF-8">
+                            <input name="titulo" type="text" class="form-control" id="insertTitulo" placeholder="Digite o tÃ­tulo da postagem:" required acceptcharset="UTF-8">
                         </div>
                         
                         
                         <div class="form-group">
-                            <label >Conteúdo:</label>
+                            <label >ConteÃºdo:</label>
                             <input name="autor" type="hidden" value="<%= usuario.getNome() %>">
-                            <textarea name="conteudo" id="insertConteudo" class="form-control" placeholder="Digite o conteúdo da postagem" rows="4" required acceptcharset="UTF-8"></textarea>
+                            <textarea name="conteudo" id="insertConteudo" class="form-control" placeholder="Digite o conteÃºdo da postagem" rows="4" required acceptcharset="UTF-8"></textarea>
                         </div>
 
                         <div align="center" class="form-group">
@@ -33,11 +35,11 @@
                 </div>	
             </div>
         </div>     
-        <!-- Form que mandará o POST para o novoPost.action!-->
+        <!-- Form que mandarÃ¡ o POST para o novoPost.action!-->
         
         <script>
            (function() {
-               const titulos = ['Um título maneiro', 'Um título incrível', 'Um titulo sensacional'];
+               const titulos = ['Um tÃ­tulo maneiro', 'Um tÃ­tulo incrÃ­vel', 'Um titulo sensacional'];
                const tituloRandom = titulos[Math.floor(Math.random() * (1 - 0 + 1)) + 1];
                document.getElementById('insertTitulo').placeholder = tituloRandom;
                

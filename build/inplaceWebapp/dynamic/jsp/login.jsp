@@ -1,27 +1,28 @@
         <%@include file= "header.jsp" %>  
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
         
-       <!-- … pego a sess„o salva setado com o atributo "usuario"   !-->
+       <!-- √â pego a sess√£o salva setado com o atributo "usuario"   !-->
        <% Usuario usuario = (Usuario)session.getAttribute("usuario");%>   
        <% String error = (String)request.getAttribute("erroLogin"); %>
        <div class="container">
             <h1 class="blog-title">Zombies Produtora Blog</h1>
                    <% if(error.equals("erro")){
            %>
-           <p style="color: #d64550; font-size: 16px;" class="lead blog-description">Usu·rio ou senha inv·lidos :( </p>
+           <p style="color: #d64550; font-size: 16px;" class="lead blog-description">Usu√°rio ou senha inv√°lidos :( </p>
            <% } else {%>
-           <p class="lead blog-description">FaÁa login !</p>
+           <p class="lead blog-description">Fa√ßa login !</p>
            <% } %>
             
         </div>        
        
         <% if(session.getAttribute("usuario")==null)  { %>  
-       <!-- AutenticaÁ„o do usu·rio atravÈs do metodo POST  !-->
+       <!-- Autentica√ß√£o do usu√°rio atrav√©s do metodo POST  !-->
         <div class="container">	
             <div class="pai">
                     <div style="padding-top: 2%" class="col-md-4 offset-md-3 box_login">
                         <form method="POST" align="center" action="Autenticador.action"> 
                             <div class="form-group">
-                            <label>Seu endereÁo de e-mail</label>
+                            <label>Seu endere√ßo de e-mail</label>
                             <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="email" placeholder="Enter email" required>
                             </div>
                             <div class="form-group">
@@ -33,7 +34,7 @@
                             </div>                     
                         </form>
                              <div class="form-group">
-                            <p> Ainda n„o È cadastrado?</p>
+                            <p> Ainda n√£o √© cadastrado?</p>
                             <a href="Register">
                                <button class="submitButton">Cadastrar</button>
                             </a>
@@ -52,20 +53,20 @@
 
         
 
-       <!-- Fim do div de autenticaÁ„o !-->               
+       <!-- Fim do div de autentica√ß√£o !-->               
   
        
        <!-- Script para verificar se foi digitado um e-mail e uma senha validas  !-->
         <script>
             $("#form").submit(function() {
                 if($("senha").val()== null || $("#senha").val() ==""){
-                    alert('Digite uma senha v·lida');      
+                    alert('Digite uma senha v√°lida');      
                     return false;
                 }
             });  
             $("#form").submit(function() {
                 if($("#name").val()== null || $("#name").val() ==""){
-                    alert('Digite um e-mail v·lido');      
+                    alert('Digite um e-mail v√°lido');      
                     return false;
                 }
             });            

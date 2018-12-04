@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import api.modelo.Post;
 import api.modelo.Usuario;
+import api.modelo.Comentario;
+import java.util.List;
 import api.modelo.Usuario;
 
 public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -38,7 +40,7 @@ public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -52,11 +54,18 @@ public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
  Usuario usuario = (Usuario)session.getAttribute("usuario");
       out.write('\n');
  Post post = (Post)request.getAttribute("post"); 
+      out.write('\n');
+ List<Comentario> comentarios = (List<Comentario>)request.getAttribute("listComentarios"); 
       out.write("\n");
-      out.write("             \n");
+      out.write("    \n");
+      out.write("                \n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
@@ -91,7 +100,7 @@ public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                      <a class=\"active\" href=\"/zombiesfinal/\">Pagina inicial</a>\n");
       out.write("                      ");
   if(session.getAttribute("usuario")==null) { 
-      out.write("\n");
+      out.write("   <!-- Verifica se já está logado !-->\n");
       out.write("                      <a href=\"Login\">Login</a>\n");
       out.write("                      ");
  } else { 
@@ -121,7 +130,7 @@ public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"container\">\t\n");
       out.write("            <div> \n");
       out.write("                    <div style=\"padding-top: 2%\" class=\"col-md-12\">\n");
-      out.write("                        <form method=\"POST\" action=\"insertAlteracao.action\">\n");
+      out.write("                        <form method=\"POST\" action=\"inserirAlteracao.action\">\n");
       out.write("                        <div class=\"form-group\">\n");
       out.write("                            <label>Título:</label>\n");
       out.write("                            <input type=\"hidden\" value=\"&#153;\" name=\"bugIE\"> \n");
@@ -141,13 +150,22 @@ public final class alterarPost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\">\n");
       out.write("                            <textarea name=\"conteudo\" id=\"insertConteudo\" class=\"form-control\" placeholder=\"");
       out.print( post.getConteudo() );
-      out.write("\" rows=\"4\">");
+      out.write("\" rows=\"4\" required acceptcharset=\"UTF-8\">");
       out.print( post.getConteudo() );
       out.write("</textarea>\n");
       out.write("                        </div>\n");
-      out.write("\n");
+      out.write("                        ");
+ if(comentarios.isEmpty()) { 
+      out.write("  <!-- Verifica se existem comentários !-->\n");
       out.write("                        <div align=\"center\" class=\"form-group\">\n");
       out.write("                            <button type=\"submit\" class=\"submitButton\">Alterar post</button>\n");
+      out.write("                            ");
+ } else { 
+      out.write("\n");
+      out.write("                            <div style=\"color: red\"> Você não pode alterar esse tópico :( </div>\n");
+      out.write("                            ");
+ } 
+      out.write("\n");
       out.write("                        </div>                    \n");
       out.write("                    </form>\n");
       out.write("                </div>\t\n");

@@ -2,6 +2,7 @@
 <%@page import="api.modelo.Post"%>
 <%@page import="api.modelo.Comentario"%>
 <%@page import="api.modelo.Usuario"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
         <% Usuario u = (Usuario)session.getAttribute("usuario"); %>
         <% List<Post> posts = (List<Post>)request.getAttribute("listPosts"); %>
@@ -9,7 +10,7 @@
         <%@include file= "header.jsp" %>  
 
         <% if(session.getAttribute("usuario")==null)  { %>
-        <div> FaÁa Login para continuar ! </div>
+        <div> Fa√ßa Login para continuar ! </div>
                                 
         <% } else if(u.getnivelAcesso().equals("1")) {
                                  %> 
@@ -17,42 +18,58 @@
             <div  style="padding-top: 02px; padding-bottom: 25px;">
                 <img width="10%" src="static/img/zombi.gif">
                 <h2> Seja bem-vindo ! </h2>
-                <p>VocÍ est· logado como: <%= u.getNome() %></p>
-                <div> Deseja adicionar um novo tÛpico?</div>
-                <a href="addPost"><button onclick="" class="submitButton">Adicionar tÛpico</button></a> 
+                <p>Voc√™ est√° logado como: <%= u.getNome() %></p>
+                <div> Deseja adicionar um novo t√≥pico?</div>
+                <a href="addPost"><button onclick="" class="submitButton">Adicionar t√≥pico</button></a> 
             </div>
             <hr>
             
              <!-- Foi definido um CSS usando media queries para tornar a table responsiva !-->
-            <!-- Gerenciar tÛpicos -->
+            <!-- Gerenciar t√≥picos -->
             <div class="col-md-12">
-                <h3> Gerenciar tÛpicos: </h3>
+                <h3> Gerenciar t√≥picos: </h3>
                 <table class="table table-condensed">
                     <tr>
                         <td class="active">Autor</td>
-                        <td class="active">TÌtulo</td>
-                        <td class="col-md-6 active">Conte˙do</td>
+                        <td class="active">T√≠tulo</td>
+                        <td class="col-md-6 active">Conte√∫do</td>
                         <td class="active">Data</td>
-                        <td class="active">AÁ„o</td>
+                        <td class="active">A√ß√£o</td>
                     </tr>
-                <!-- Loop de tÛpicos existentes no blog  -->
+                <!-- Loop de t√≥picos existentes no blog  -->
                    <% for(Post p: posts) { %>
               
                     <tr class="active">
                         <td ><%= p.getAutor() %></td>
-                        <td><%= p.getTitulo() %></td>
-                        <td ><%= p.getConteudo()%></td>
+                        <td>
+                            <% 
+                            if (p.getTitulo().length() > 30) { %>
+                            <p><%= p.getTitulo().substring(0, 30) + "... [+]" %> </p>
+                            <% } else { %>
+                            <p><%= p.getTitulo() %></p>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% 
+                            if (p.getConteudo().length() > 200) { %>
+                            <p><%= p.getConteudo().substring(0, 200) + "... [+]" %> </p>
+                            <% } else { %>
+                            <p><%= p.getConteudo() %></p>
+                            <% } %>
+                        </td>
                         <td><%= p.getData()%></td>
                         <td>
                             <form method="POST" action="excluirPost.action">
                                 <input type="hidden" name="idPostDel" value="<%= p.getId() %>">
                             <button type="submit" class="deleteButton">Excluir </button>
                             </form>
+                            
+                            
                             <form method="POST" action="alterarPost.action">
                                 <input type="hidden" name="idPost" value="<%= p.getId() %>">
                             <button type="submit" class="submitButton">Alterar</button>
                             </form>                            
-                            <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver tÛpico </button></a>
+                            <a href="Post?idPost=<%= p.getId() %>"><button onclick="" class="submitButton">Ver t√≥pico </button></a>
                         </td>
                     </tr>
                             <% } %>  
@@ -62,26 +79,26 @@
             </div>
             
                   
-            <!-- Gerenciar Usu·rios -->
+            <!-- Gerenciar Usu√°rios -->
             <hr>
             <div class="col-md-12">
-                <h3> Gerenciar usu·rios: </h3>
+                <h3> Gerenciar usu√°rios: </h3>
                 <table class="table table-condensed">
                  <% for(Usuario x: usuarios) { %>
                     <% if(x.getnivelAcesso().equals("0")) { %>
                     <tr>
                         <td class="active">Nome</td>
-                        <td class="active">FunÁ„o</td>
+                        <td class="active">Fun√ß√£o</td>
                         <td class="active">Apelido</td>
-                        <td class="active col-md-2">AÁ„o</td>
+                        <td class="active col-md-2">A√ß√£o</td>
                 
                     </tr>
-                <!-- Loop de tÛpicos existentes no blog  -->
+                <!-- Loop de t√≥picos existentes no blog  -->
                     <tr class="active">
                         <td ><%= x.getNome() %></td>
                         <td class="active"><% if(x.getnivelAcesso().equals("1")) {%>
                             Administrador <% } else {%>
-                            Usu·rio <% } %></td>
+                            Usu√°rio <% } %></td>
                         <td><%= x.getApelido() %></td>
                         <td>
                             <form method="POST" action="excluirUsuario.action">
@@ -100,7 +117,7 @@
             
             </div>  
         <% } else { %>
-            <div> Apenas administradores podem ver essa p·gina </div>
+            <div> Apenas administradores podem ver essa p√°gina </div>
             
          <% } %>
     </body>

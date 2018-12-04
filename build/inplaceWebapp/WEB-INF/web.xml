@@ -22,7 +22,7 @@
     </servlet>    
     <servlet>
         <servlet-name>screenPost</servlet-name>
-        <servlet-class>web.servlet.AdicionarPost</servlet-class>
+        <servlet-class>web.servlet.AbrirPost</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>screenLogado</servlet-name>

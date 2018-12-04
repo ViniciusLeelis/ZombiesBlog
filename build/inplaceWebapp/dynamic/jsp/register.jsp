@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
         <%@include file= "header.jsp" %>  
 
        <div class="container">
             <h1 class="blog-title">Zombies Produtora Blog</h1>
-            <h3 class="lead blog-description">Insira suas informações abaixo para cadastro: </h3>
+            <h3 class="lead blog-description">Insira suas informaÃ§Ãµes abaixo para cadastro: </h3>
        </div>        
         
-    <!-- Inserir um novo usuário pelo metodo POST!-->         
+    <!-- Inserir um novo usuÃ¡rio pelo metodo POST!-->         
        <div class="container">	
            <div>
                    <div style="padding-top: 2%" class="col-md-12">

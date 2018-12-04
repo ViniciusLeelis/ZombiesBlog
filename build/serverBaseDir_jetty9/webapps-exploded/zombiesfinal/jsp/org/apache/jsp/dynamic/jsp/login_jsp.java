@@ -36,7 +36,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -81,7 +81,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                      <a class=\"active\" href=\"/zombiesfinal/\">Pagina inicial</a>\n");
       out.write("                      ");
   if(session.getAttribute("usuario")==null) { 
-      out.write("\n");
+      out.write("   <!-- Verifica se já está logado !-->\n");
       out.write("                      <a href=\"Login\">Login</a>\n");
       out.write("                      ");
  } else { 
@@ -101,6 +101,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       \n");
       out.write("\n");
       out.write("  \r\n");
+      out.write("        \r\n");
       out.write("        \r\n");
       out.write("       <!-- É pego a sessão salva setado com o atributo \"usuario\"   !-->\r\n");
       out.write("       ");
