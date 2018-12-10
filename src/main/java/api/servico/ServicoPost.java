@@ -10,5 +10,5 @@ public interface ServicoPost {
     public void excluir(Long id);
     public Post procurarID(Long id);
     public List<Post> listarTudo();
-    
+    public void alterar(Post post);    
 }

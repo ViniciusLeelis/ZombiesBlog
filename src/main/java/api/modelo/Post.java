@@ -21,11 +21,11 @@ public class Post {
     private List<Comentario> comentarios;
     
     public Post(Long id, String titulo, String conteudo, String data_criacao, String autor) {
-        this.setId(id);
-        this.setTitulo(titulo);
-        this.setConteudo(conteudo);
-        this.setData(data_criacao);
-        this.setAutor(autor);
+        this.id = id;
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+        this.data_criacao = data_criacao;
+        this.autor = autor;
    
     }
     public Post(String titulo, String conteudo, String data, String autor) {

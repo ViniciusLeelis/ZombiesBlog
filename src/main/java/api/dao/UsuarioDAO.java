@@ -12,5 +12,5 @@ public interface UsuarioDAO {
     public List<Usuario> procurarTudo();
     public Usuario atualizar(Usuario usuarioAnt, Usuario usuarioAt);
     public boolean apagar(Usuario usuario);
-    public void apagar(Long id);   
+    public void apagar(Long id, String autor);   
 }

@@ -11,4 +11,5 @@ public interface PostDAO {
     public Post atualizar(Post postAnt, Post postAt);
     public void apagar(Post  post);
     public void apagar(Long id);   
+    public void alterar(Post post);
 }

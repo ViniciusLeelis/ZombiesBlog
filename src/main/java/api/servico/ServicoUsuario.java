@@ -14,5 +14,5 @@ public interface ServicoUsuario {
     public void inserir(Usuario usuario);
     public Usuario procurarEmail(String emailUsuario);
     public List<Usuario> procurarTudo();
-    public void apagar(Long id);
+    public void apagar(Long id, String autor);
 }

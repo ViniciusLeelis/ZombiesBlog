@@ -64,9 +64,7 @@ public class comentarioBD implements ComentarioDAO{
                 c.setIdPost(rs.getLong(5));
                 listaComentario.add(c);
             }
-            System.out.print("bataaataa:" + c.getAutor());
-            System.out.println("batatata" + c.getComentario());       
-            System.out.println("batatat: " + c.getId());
+    
             
             comandoSQLp.close();
             rs.close();
@@ -74,7 +72,7 @@ public class comentarioBD implements ComentarioDAO{
         }           
         catch (Exception e)
         {
-          System.out.print("\nbatataaa " );
+          System.out.print("Error" );
         }
 
         return listaComentario;
@@ -96,9 +94,6 @@ public class comentarioBD implements ComentarioDAO{
                 c.setIdPost(rs.getLong(5));
                 listaComentario.add(c);
             }
-            System.out.print("bataaataa:" + c.getAutor());
-            System.out.println("batatata" + c.getComentario());       
-            System.out.println("batatat: " + c.getId());
             
             comandoSQLp.close();
             rs.close();
@@ -106,7 +101,6 @@ public class comentarioBD implements ComentarioDAO{
         }           
         catch (Exception e)
         {
-          System.out.print("\nbatataaa " );
         }
 
         return listaComentario;
